@@ -138,7 +138,7 @@ type AccountMarginMode int32
 const (
 	AccountMarginMode_ACCOUNT_MARGIN_MODE_RETAIL_NETTING AccountMarginMode = 0 //Used for the OTC markets to interpret positions in the "netting" mode (only one position can exist for one symbol).
 	AccountMarginMode_ACCOUNT_MARGIN_MODE_EXCHANGE       AccountMarginMode = 1 //Used for the exchange markets.
-	AccountMarginMode_ACCOUNT_MARGIN_MODE_RETAIL_HEDGING AccountMarginMode = 3 //Used for the exchange markets where individual positions are possible (hedging, multiple positions can exist for one symbol).
+	AccountMarginMode_ACCOUNT_MARGIN_MODE_RETAIL_HEDGING AccountMarginMode = 2 //Used for the exchange markets where individual positions are possible (hedging, multiple positions can exist for one symbol).
 )
 
 // Enum value maps for AccountMarginMode.
@@ -146,12 +146,12 @@ var (
 	AccountMarginMode_name = map[int32]string{
 		0: "ACCOUNT_MARGIN_MODE_RETAIL_NETTING",
 		1: "ACCOUNT_MARGIN_MODE_EXCHANGE",
-		3: "ACCOUNT_MARGIN_MODE_RETAIL_HEDGING",
+		2: "ACCOUNT_MARGIN_MODE_RETAIL_HEDGING",
 	}
 	AccountMarginMode_value = map[string]int32{
 		"ACCOUNT_MARGIN_MODE_RETAIL_NETTING": 0,
 		"ACCOUNT_MARGIN_MODE_EXCHANGE":       1,
-		"ACCOUNT_MARGIN_MODE_RETAIL_HEDGING": 3,
+		"ACCOUNT_MARGIN_MODE_RETAIL_HEDGING": 2,
 	}
 )
 
@@ -508,7 +508,7 @@ var file_account_proto_rawDesc = []byte{
 	0x52, 0x47, 0x49, 0x4e, 0x5f, 0x4d, 0x4f, 0x44, 0x45, 0x5f, 0x45, 0x58, 0x43, 0x48, 0x41, 0x4e,
 	0x47, 0x45, 0x10, 0x01, 0x12, 0x26, 0x0a, 0x22, 0x41, 0x43, 0x43, 0x4f, 0x55, 0x4e, 0x54, 0x5f,
 	0x4d, 0x41, 0x52, 0x47, 0x49, 0x4e, 0x5f, 0x4d, 0x4f, 0x44, 0x45, 0x5f, 0x52, 0x45, 0x54, 0x41,
-	0x49, 0x4c, 0x5f, 0x48, 0x45, 0x44, 0x47, 0x49, 0x4e, 0x47, 0x10, 0x03, 0x62, 0x06, 0x70, 0x72,
+	0x49, 0x4c, 0x5f, 0x48, 0x45, 0x44, 0x47, 0x49, 0x4e, 0x47, 0x10, 0x02, 0x62, 0x06, 0x70, 0x72,
 	0x6f, 0x74, 0x6f, 0x33,
 }
 
