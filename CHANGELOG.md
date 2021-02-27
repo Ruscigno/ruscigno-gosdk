@@ -1,2 +1,2 @@
-## 0.9.0
-- GRPC Health Checking Protocol
+## 0.11.0
+- GRPC Health Check
