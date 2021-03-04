@@ -21,18 +21,12 @@ const _ = grpc.SupportPackageIsVersion7
 type RuscignoMetatrader5ServiceClient interface {
 	// Create a new account
 	CreateAccount(ctx context.Context, in *CreateAccountRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// Create a new deal
-	CreateDeal(ctx context.Context, in *CreateDealRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// Create a new order
-	CreateOrder(ctx context.Context, in *CreateOrderRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// Create a new position
-	CreatePosition(ctx context.Context, in *CreatePositionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// Create a multiple new deals
-	CreateMultipleDeals(ctx context.Context, in *CreateMultipleDealsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// Create a new multiple orders
-	CreateMultipleOrders(ctx context.Context, in *CreateMultipleOrdersRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// Create a new multiple positions
-	CreateMultiplePositions(ctx context.Context, in *CreateMultiplePositionsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// Create new deals
+	CreateDeals(ctx context.Context, in *CreateDealsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// Create new orders
+	CreateOrders(ctx context.Context, in *CreateOrdersRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// Create new positions
+	CreatePositions(ctx context.Context, in *CreatePositionsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type ruscignoMetatrader5ServiceClient struct {
@@ -52,54 +46,27 @@ func (c *ruscignoMetatrader5ServiceClient) CreateAccount(ctx context.Context, in
 	return out, nil
 }
 
-func (c *ruscignoMetatrader5ServiceClient) CreateDeal(ctx context.Context, in *CreateDealRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *ruscignoMetatrader5ServiceClient) CreateDeals(ctx context.Context, in *CreateDealsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/mql5_background.v1.RuscignoMetatrader5Service/CreateDeal", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/mql5_background.v1.RuscignoMetatrader5Service/CreateDeals", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *ruscignoMetatrader5ServiceClient) CreateOrder(ctx context.Context, in *CreateOrderRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *ruscignoMetatrader5ServiceClient) CreateOrders(ctx context.Context, in *CreateOrdersRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/mql5_background.v1.RuscignoMetatrader5Service/CreateOrder", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/mql5_background.v1.RuscignoMetatrader5Service/CreateOrders", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *ruscignoMetatrader5ServiceClient) CreatePosition(ctx context.Context, in *CreatePositionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *ruscignoMetatrader5ServiceClient) CreatePositions(ctx context.Context, in *CreatePositionsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/mql5_background.v1.RuscignoMetatrader5Service/CreatePosition", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *ruscignoMetatrader5ServiceClient) CreateMultipleDeals(ctx context.Context, in *CreateMultipleDealsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/mql5_background.v1.RuscignoMetatrader5Service/CreateMultipleDeals", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *ruscignoMetatrader5ServiceClient) CreateMultipleOrders(ctx context.Context, in *CreateMultipleOrdersRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/mql5_background.v1.RuscignoMetatrader5Service/CreateMultipleOrders", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *ruscignoMetatrader5ServiceClient) CreateMultiplePositions(ctx context.Context, in *CreateMultiplePositionsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/mql5_background.v1.RuscignoMetatrader5Service/CreateMultiplePositions", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/mql5_background.v1.RuscignoMetatrader5Service/CreatePositions", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -112,18 +79,12 @@ func (c *ruscignoMetatrader5ServiceClient) CreateMultiplePositions(ctx context.C
 type RuscignoMetatrader5ServiceServer interface {
 	// Create a new account
 	CreateAccount(context.Context, *CreateAccountRequest) (*emptypb.Empty, error)
-	// Create a new deal
-	CreateDeal(context.Context, *CreateDealRequest) (*emptypb.Empty, error)
-	// Create a new order
-	CreateOrder(context.Context, *CreateOrderRequest) (*emptypb.Empty, error)
-	// Create a new position
-	CreatePosition(context.Context, *CreatePositionRequest) (*emptypb.Empty, error)
-	// Create a multiple new deals
-	CreateMultipleDeals(context.Context, *CreateMultipleDealsRequest) (*emptypb.Empty, error)
-	// Create a new multiple orders
-	CreateMultipleOrders(context.Context, *CreateMultipleOrdersRequest) (*emptypb.Empty, error)
-	// Create a new multiple positions
-	CreateMultiplePositions(context.Context, *CreateMultiplePositionsRequest) (*emptypb.Empty, error)
+	// Create new deals
+	CreateDeals(context.Context, *CreateDealsRequest) (*emptypb.Empty, error)
+	// Create new orders
+	CreateOrders(context.Context, *CreateOrdersRequest) (*emptypb.Empty, error)
+	// Create new positions
+	CreatePositions(context.Context, *CreatePositionsRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedRuscignoMetatrader5ServiceServer()
 }
 
@@ -134,23 +95,14 @@ type UnimplementedRuscignoMetatrader5ServiceServer struct {
 func (UnimplementedRuscignoMetatrader5ServiceServer) CreateAccount(context.Context, *CreateAccountRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateAccount not implemented")
 }
-func (UnimplementedRuscignoMetatrader5ServiceServer) CreateDeal(context.Context, *CreateDealRequest) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateDeal not implemented")
+func (UnimplementedRuscignoMetatrader5ServiceServer) CreateDeals(context.Context, *CreateDealsRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateDeals not implemented")
 }
-func (UnimplementedRuscignoMetatrader5ServiceServer) CreateOrder(context.Context, *CreateOrderRequest) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateOrder not implemented")
+func (UnimplementedRuscignoMetatrader5ServiceServer) CreateOrders(context.Context, *CreateOrdersRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateOrders not implemented")
 }
-func (UnimplementedRuscignoMetatrader5ServiceServer) CreatePosition(context.Context, *CreatePositionRequest) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreatePosition not implemented")
-}
-func (UnimplementedRuscignoMetatrader5ServiceServer) CreateMultipleDeals(context.Context, *CreateMultipleDealsRequest) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateMultipleDeals not implemented")
-}
-func (UnimplementedRuscignoMetatrader5ServiceServer) CreateMultipleOrders(context.Context, *CreateMultipleOrdersRequest) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateMultipleOrders not implemented")
-}
-func (UnimplementedRuscignoMetatrader5ServiceServer) CreateMultiplePositions(context.Context, *CreateMultiplePositionsRequest) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateMultiplePositions not implemented")
+func (UnimplementedRuscignoMetatrader5ServiceServer) CreatePositions(context.Context, *CreatePositionsRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreatePositions not implemented")
 }
 func (UnimplementedRuscignoMetatrader5ServiceServer) mustEmbedUnimplementedRuscignoMetatrader5ServiceServer() {
 }
@@ -184,110 +136,56 @@ func _RuscignoMetatrader5Service_CreateAccount_Handler(srv interface{}, ctx cont
 	return interceptor(ctx, in, info, handler)
 }
 
-func _RuscignoMetatrader5Service_CreateDeal_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateDealRequest)
+func _RuscignoMetatrader5Service_CreateDeals_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateDealsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RuscignoMetatrader5ServiceServer).CreateDeal(ctx, in)
+		return srv.(RuscignoMetatrader5ServiceServer).CreateDeals(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/mql5_background.v1.RuscignoMetatrader5Service/CreateDeal",
+		FullMethod: "/mql5_background.v1.RuscignoMetatrader5Service/CreateDeals",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RuscignoMetatrader5ServiceServer).CreateDeal(ctx, req.(*CreateDealRequest))
+		return srv.(RuscignoMetatrader5ServiceServer).CreateDeals(ctx, req.(*CreateDealsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _RuscignoMetatrader5Service_CreateOrder_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateOrderRequest)
+func _RuscignoMetatrader5Service_CreateOrders_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateOrdersRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RuscignoMetatrader5ServiceServer).CreateOrder(ctx, in)
+		return srv.(RuscignoMetatrader5ServiceServer).CreateOrders(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/mql5_background.v1.RuscignoMetatrader5Service/CreateOrder",
+		FullMethod: "/mql5_background.v1.RuscignoMetatrader5Service/CreateOrders",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RuscignoMetatrader5ServiceServer).CreateOrder(ctx, req.(*CreateOrderRequest))
+		return srv.(RuscignoMetatrader5ServiceServer).CreateOrders(ctx, req.(*CreateOrdersRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _RuscignoMetatrader5Service_CreatePosition_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreatePositionRequest)
+func _RuscignoMetatrader5Service_CreatePositions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreatePositionsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RuscignoMetatrader5ServiceServer).CreatePosition(ctx, in)
+		return srv.(RuscignoMetatrader5ServiceServer).CreatePositions(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/mql5_background.v1.RuscignoMetatrader5Service/CreatePosition",
+		FullMethod: "/mql5_background.v1.RuscignoMetatrader5Service/CreatePositions",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RuscignoMetatrader5ServiceServer).CreatePosition(ctx, req.(*CreatePositionRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _RuscignoMetatrader5Service_CreateMultipleDeals_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateMultipleDealsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(RuscignoMetatrader5ServiceServer).CreateMultipleDeals(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/mql5_background.v1.RuscignoMetatrader5Service/CreateMultipleDeals",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RuscignoMetatrader5ServiceServer).CreateMultipleDeals(ctx, req.(*CreateMultipleDealsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _RuscignoMetatrader5Service_CreateMultipleOrders_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateMultipleOrdersRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(RuscignoMetatrader5ServiceServer).CreateMultipleOrders(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/mql5_background.v1.RuscignoMetatrader5Service/CreateMultipleOrders",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RuscignoMetatrader5ServiceServer).CreateMultipleOrders(ctx, req.(*CreateMultipleOrdersRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _RuscignoMetatrader5Service_CreateMultiplePositions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateMultiplePositionsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(RuscignoMetatrader5ServiceServer).CreateMultiplePositions(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/mql5_background.v1.RuscignoMetatrader5Service/CreateMultiplePositions",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RuscignoMetatrader5ServiceServer).CreateMultiplePositions(ctx, req.(*CreateMultiplePositionsRequest))
+		return srv.(RuscignoMetatrader5ServiceServer).CreatePositions(ctx, req.(*CreatePositionsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -304,28 +202,16 @@ var RuscignoMetatrader5Service_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _RuscignoMetatrader5Service_CreateAccount_Handler,
 		},
 		{
-			MethodName: "CreateDeal",
-			Handler:    _RuscignoMetatrader5Service_CreateDeal_Handler,
+			MethodName: "CreateDeals",
+			Handler:    _RuscignoMetatrader5Service_CreateDeals_Handler,
 		},
 		{
-			MethodName: "CreateOrder",
-			Handler:    _RuscignoMetatrader5Service_CreateOrder_Handler,
+			MethodName: "CreateOrders",
+			Handler:    _RuscignoMetatrader5Service_CreateOrders_Handler,
 		},
 		{
-			MethodName: "CreatePosition",
-			Handler:    _RuscignoMetatrader5Service_CreatePosition_Handler,
-		},
-		{
-			MethodName: "CreateMultipleDeals",
-			Handler:    _RuscignoMetatrader5Service_CreateMultipleDeals_Handler,
-		},
-		{
-			MethodName: "CreateMultipleOrders",
-			Handler:    _RuscignoMetatrader5Service_CreateMultipleOrders_Handler,
-		},
-		{
-			MethodName: "CreateMultiplePositions",
-			Handler:    _RuscignoMetatrader5Service_CreateMultiplePositions_Handler,
+			MethodName: "CreatePositions",
+			Handler:    _RuscignoMetatrader5Service_CreatePositions_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
