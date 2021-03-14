@@ -1,3 +1,6 @@
+## v0.15.10
+- fix: TradeRequestActions
+
 ## v0.15.9
 - fix: change filed name to time_expiration
 
