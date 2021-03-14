@@ -1,3 +1,6 @@
+## v0.15.6
+- fix: cannot use type, changing to trade_type 2
+  
 ## v0.15.5
 - feat: better naming
   
