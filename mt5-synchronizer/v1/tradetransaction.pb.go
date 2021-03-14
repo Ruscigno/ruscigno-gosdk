@@ -108,7 +108,7 @@ const (
 	TradeTransactionType_TRADE_TRANSACTION_HISTORY_UPDATE TradeTransactionType = 7  // Changing an order located in the orders history. This type is provided for enhancing functionality on a trade server side.
 	TradeTransactionType_TRADE_TRANSACTION_HISTORY_DELETE TradeTransactionType = 8  // Deleting an order from the orders history. This type is provided for enhancing functionality on a trade server side.
 	TradeTransactionType_TRADE_TRANSACTION_POSITION       TradeTransactionType = 9  // Changing a position not related to a deal execution. This type of transaction shows that a position has been changed on a trade server side. Position volume, open price, Stop Loss and Take Profit levels can be changed. Data on changes are submitted in MqlTradeTransaction structure via OnTradeTransaction handler. Position change (adding, changing or closing), as a result of a deal execution, does not lead to the occurrence of TRADE_TRANSACTION_POSITION transaction.
-	TradeTransactionType_TRADE_TRANSACTION_REQUEST        TradeTransactionType = 20 // Notification of the fact that a trade request has been processed by a server and processing result has been received. Only type field (trade transaction type) must be analyzed for such transactions in MqlTradeTransaction structure. The second and third parameters of OnTradeTransaction (request and result) must be analyzed for additional data.
+	TradeTransactionType_TRADE_TRANSACTION_REQUEST        TradeTransactionType = 10 // Notification of the fact that a trade request has been processed by a server and processing result has been received. Only type field (trade transaction type) must be analyzed for such transactions in MqlTradeTransaction structure. The second and third parameters of OnTradeTransaction (request and result) must be analyzed for additional data.
 )
 
 // Enum value maps for TradeTransactionType.
@@ -124,7 +124,7 @@ var (
 		7:  "TRADE_TRANSACTION_HISTORY_UPDATE",
 		8:  "TRADE_TRANSACTION_HISTORY_DELETE",
 		9:  "TRADE_TRANSACTION_POSITION",
-		20: "TRADE_TRANSACTION_REQUEST",
+		10: "TRADE_TRANSACTION_REQUEST",
 	}
 	TradeTransactionType_value = map[string]int32{
 		"TRADE_TRANSACTION_ORDER_ADD":      0,
@@ -137,7 +137,7 @@ var (
 		"TRADE_TRANSACTION_HISTORY_UPDATE": 7,
 		"TRADE_TRANSACTION_HISTORY_DELETE": 8,
 		"TRADE_TRANSACTION_POSITION":       9,
-		"TRADE_TRANSACTION_REQUEST":        20,
+		"TRADE_TRANSACTION_REQUEST":        10,
 	}
 )
 
@@ -774,7 +774,7 @@ var file_tradetransaction_proto_rawDesc = []byte{
 	0x52, 0x41, 0x4e, 0x53, 0x41, 0x43, 0x54, 0x49, 0x4f, 0x4e, 0x5f, 0x50, 0x4f, 0x53, 0x49, 0x54,
 	0x49, 0x4f, 0x4e, 0x10, 0x09, 0x12, 0x1d, 0x0a, 0x19, 0x54, 0x52, 0x41, 0x44, 0x45, 0x5f, 0x54,
 	0x52, 0x41, 0x4e, 0x53, 0x41, 0x43, 0x54, 0x49, 0x4f, 0x4e, 0x5f, 0x52, 0x45, 0x51, 0x55, 0x45,
-	0x53, 0x54, 0x10, 0x14, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x53, 0x54, 0x10, 0x0a, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (

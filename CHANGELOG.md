@@ -1,3 +1,6 @@
+## v0.15.3
+- fix: typo on TradeTransactionType
+  
 ## v0.15.2
 - feat: trade transation request
 
