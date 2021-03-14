@@ -1,3 +1,6 @@
+## v0.15.7
+- feat: adding model ID 
+
 ## v0.15.6
 - fix: cannot use type, changing to trade_type 2
   
