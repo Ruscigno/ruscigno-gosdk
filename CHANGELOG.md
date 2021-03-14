@@ -1,3 +1,9 @@
+## v0.15.2
+- feat: trade transation request
+
+## v0.15.1
+- fix: add account_id
+  
 ## v0.15.0
 - feat: trade transation request
   
