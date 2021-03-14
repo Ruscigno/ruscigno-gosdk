@@ -1,3 +1,6 @@
+## v0.15.5
+- feat: better naming
+  
 ## v0.15.4
 - fix: cannot use type, changing to trade_type
 - feat: changing to int64 as it could be as big as it
