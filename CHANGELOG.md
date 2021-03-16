@@ -1,3 +1,6 @@
+## v0.17.0
+- feat: server time of the position
+
 ## v0.16.2
 - feat: additional fields
 
