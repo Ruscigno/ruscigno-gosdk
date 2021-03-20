@@ -20,7 +20,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TickerBeatsServiceClient interface {
 	// Gets all deals from the signals
-	GetSignalDeals(ctx context.Context, in *GetSignalDealsRequest, opts ...grpc.CallOption) (*GetSignalDealsResponse, error)
+	GetTickerBeats(ctx context.Context, in *GetTickerBeatsRequest, opts ...grpc.CallOption) (*GetTickerBeatsResponse, error)
 }
 
 type tickerBeatsServiceClient struct {
@@ -31,9 +31,9 @@ func NewTickerBeatsServiceClient(cc grpc.ClientConnInterface) TickerBeatsService
 	return &tickerBeatsServiceClient{cc}
 }
 
-func (c *tickerBeatsServiceClient) GetSignalDeals(ctx context.Context, in *GetSignalDealsRequest, opts ...grpc.CallOption) (*GetSignalDealsResponse, error) {
-	out := new(GetSignalDealsResponse)
-	err := c.cc.Invoke(ctx, "/mql5_background.v1.TickerBeatsService/GetSignalDeals", in, out, opts...)
+func (c *tickerBeatsServiceClient) GetTickerBeats(ctx context.Context, in *GetTickerBeatsRequest, opts ...grpc.CallOption) (*GetTickerBeatsResponse, error) {
+	out := new(GetTickerBeatsResponse)
+	err := c.cc.Invoke(ctx, "/mql5_background.v1.TickerBeatsService/GetTickerBeats", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -45,7 +45,7 @@ func (c *tickerBeatsServiceClient) GetSignalDeals(ctx context.Context, in *GetSi
 // for forward compatibility
 type TickerBeatsServiceServer interface {
 	// Gets all deals from the signals
-	GetSignalDeals(context.Context, *GetSignalDealsRequest) (*GetSignalDealsResponse, error)
+	GetTickerBeats(context.Context, *GetTickerBeatsRequest) (*GetTickerBeatsResponse, error)
 	mustEmbedUnimplementedTickerBeatsServiceServer()
 }
 
@@ -53,8 +53,8 @@ type TickerBeatsServiceServer interface {
 type UnimplementedTickerBeatsServiceServer struct {
 }
 
-func (UnimplementedTickerBeatsServiceServer) GetSignalDeals(context.Context, *GetSignalDealsRequest) (*GetSignalDealsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetSignalDeals not implemented")
+func (UnimplementedTickerBeatsServiceServer) GetTickerBeats(context.Context, *GetTickerBeatsRequest) (*GetTickerBeatsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTickerBeats not implemented")
 }
 func (UnimplementedTickerBeatsServiceServer) mustEmbedUnimplementedTickerBeatsServiceServer() {}
 
@@ -69,20 +69,20 @@ func RegisterTickerBeatsServiceServer(s grpc.ServiceRegistrar, srv TickerBeatsSe
 	s.RegisterService(&TickerBeatsService_ServiceDesc, srv)
 }
 
-func _TickerBeatsService_GetSignalDeals_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetSignalDealsRequest)
+func _TickerBeatsService_GetTickerBeats_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTickerBeatsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TickerBeatsServiceServer).GetSignalDeals(ctx, in)
+		return srv.(TickerBeatsServiceServer).GetTickerBeats(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/mql5_background.v1.TickerBeatsService/GetSignalDeals",
+		FullMethod: "/mql5_background.v1.TickerBeatsService/GetTickerBeats",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TickerBeatsServiceServer).GetSignalDeals(ctx, req.(*GetSignalDealsRequest))
+		return srv.(TickerBeatsServiceServer).GetTickerBeats(ctx, req.(*GetTickerBeatsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -95,8 +95,8 @@ var TickerBeatsService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*TickerBeatsServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetSignalDeals",
-			Handler:    _TickerBeatsService_GetSignalDeals_Handler,
+			MethodName: "GetTickerBeats",
+			Handler:    _TickerBeatsService_GetTickerBeats_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
