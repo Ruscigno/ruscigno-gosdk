@@ -116,7 +116,7 @@ type TransactionsServiceClient interface {
 	// Creates a new position
 	CreatePositions(ctx context.Context, in *CreatePositionsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Creates a trade transation
-	CreateTradeTransaction(ctx context.Context, in *CreateTradeTransactionRequest, opts ...grpc.CallOption) (*GetSignalDealsResponse, error)
+	CreateTradeTransaction(ctx context.Context, in *CreateTradeTransactionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type transactionsServiceClient struct {
@@ -163,8 +163,8 @@ func (c *transactionsServiceClient) CreatePositions(ctx context.Context, in *Cre
 	return out, nil
 }
 
-func (c *transactionsServiceClient) CreateTradeTransaction(ctx context.Context, in *CreateTradeTransactionRequest, opts ...grpc.CallOption) (*GetSignalDealsResponse, error) {
-	out := new(GetSignalDealsResponse)
+func (c *transactionsServiceClient) CreateTradeTransaction(ctx context.Context, in *CreateTradeTransactionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, "/mql5_background.v1.TransactionsService/CreateTradeTransaction", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -185,7 +185,7 @@ type TransactionsServiceServer interface {
 	// Creates a new position
 	CreatePositions(context.Context, *CreatePositionsRequest) (*emptypb.Empty, error)
 	// Creates a trade transation
-	CreateTradeTransaction(context.Context, *CreateTradeTransactionRequest) (*GetSignalDealsResponse, error)
+	CreateTradeTransaction(context.Context, *CreateTradeTransactionRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedTransactionsServiceServer()
 }
 
@@ -205,7 +205,7 @@ func (UnimplementedTransactionsServiceServer) CreateOrders(context.Context, *Cre
 func (UnimplementedTransactionsServiceServer) CreatePositions(context.Context, *CreatePositionsRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreatePositions not implemented")
 }
-func (UnimplementedTransactionsServiceServer) CreateTradeTransaction(context.Context, *CreateTradeTransactionRequest) (*GetSignalDealsResponse, error) {
+func (UnimplementedTransactionsServiceServer) CreateTradeTransaction(context.Context, *CreateTradeTransactionRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateTradeTransaction not implemented")
 }
 func (UnimplementedTransactionsServiceServer) mustEmbedUnimplementedTransactionsServiceServer() {}
