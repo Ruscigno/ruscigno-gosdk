@@ -1,3 +1,6 @@
+## v0.19.0
+- feat: signal service
+
 ## v0.18.1
 - feat: add server time field
 ## v0.18.0

@@ -15,10 +15,98 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// RuscignoMetatrader5ServiceClient is the client API for RuscignoMetatrader5Service service.
+// TickerBeatsServiceClient is the client API for TickerBeatsService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type RuscignoMetatrader5ServiceClient interface {
+type TickerBeatsServiceClient interface {
+	// Gets all deals from the signals
+	GetSignalDeals(ctx context.Context, in *GetSignalDealsRequest, opts ...grpc.CallOption) (*GetSignalDealsResponse, error)
+}
+
+type tickerBeatsServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewTickerBeatsServiceClient(cc grpc.ClientConnInterface) TickerBeatsServiceClient {
+	return &tickerBeatsServiceClient{cc}
+}
+
+func (c *tickerBeatsServiceClient) GetSignalDeals(ctx context.Context, in *GetSignalDealsRequest, opts ...grpc.CallOption) (*GetSignalDealsResponse, error) {
+	out := new(GetSignalDealsResponse)
+	err := c.cc.Invoke(ctx, "/mql5_background.v1.TickerBeatsService/GetSignalDeals", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// TickerBeatsServiceServer is the server API for TickerBeatsService service.
+// All implementations must embed UnimplementedTickerBeatsServiceServer
+// for forward compatibility
+type TickerBeatsServiceServer interface {
+	// Gets all deals from the signals
+	GetSignalDeals(context.Context, *GetSignalDealsRequest) (*GetSignalDealsResponse, error)
+	mustEmbedUnimplementedTickerBeatsServiceServer()
+}
+
+// UnimplementedTickerBeatsServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedTickerBeatsServiceServer struct {
+}
+
+func (UnimplementedTickerBeatsServiceServer) GetSignalDeals(context.Context, *GetSignalDealsRequest) (*GetSignalDealsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSignalDeals not implemented")
+}
+func (UnimplementedTickerBeatsServiceServer) mustEmbedUnimplementedTickerBeatsServiceServer() {}
+
+// UnsafeTickerBeatsServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to TickerBeatsServiceServer will
+// result in compilation errors.
+type UnsafeTickerBeatsServiceServer interface {
+	mustEmbedUnimplementedTickerBeatsServiceServer()
+}
+
+func RegisterTickerBeatsServiceServer(s grpc.ServiceRegistrar, srv TickerBeatsServiceServer) {
+	s.RegisterService(&TickerBeatsService_ServiceDesc, srv)
+}
+
+func _TickerBeatsService_GetSignalDeals_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSignalDealsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TickerBeatsServiceServer).GetSignalDeals(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/mql5_background.v1.TickerBeatsService/GetSignalDeals",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TickerBeatsServiceServer).GetSignalDeals(ctx, req.(*GetSignalDealsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// TickerBeatsService_ServiceDesc is the grpc.ServiceDesc for TickerBeatsService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var TickerBeatsService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "mql5_background.v1.TickerBeatsService",
+	HandlerType: (*TickerBeatsServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetSignalDeals",
+			Handler:    _TickerBeatsService_GetSignalDeals_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "api.proto",
+}
+
+// TransactionSServiceClient is the client API for TransactionSService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type TransactionSServiceClient interface {
 	// Creates a new account
 	CreateAccount(ctx context.Context, in *CreateAccountRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Creates a new deal
@@ -28,66 +116,66 @@ type RuscignoMetatrader5ServiceClient interface {
 	// Creates a new position
 	CreatePositions(ctx context.Context, in *CreatePositionsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Creates a trade transation
-	CreateTradeTransaction(ctx context.Context, in *CreateTradeTransactionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	CreateTradeTransaction(ctx context.Context, in *CreateTradeTransactionRequest, opts ...grpc.CallOption) (*GetSignalDealsResponse, error)
 }
 
-type ruscignoMetatrader5ServiceClient struct {
+type transactionSServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewRuscignoMetatrader5ServiceClient(cc grpc.ClientConnInterface) RuscignoMetatrader5ServiceClient {
-	return &ruscignoMetatrader5ServiceClient{cc}
+func NewTransactionSServiceClient(cc grpc.ClientConnInterface) TransactionSServiceClient {
+	return &transactionSServiceClient{cc}
 }
 
-func (c *ruscignoMetatrader5ServiceClient) CreateAccount(ctx context.Context, in *CreateAccountRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *transactionSServiceClient) CreateAccount(ctx context.Context, in *CreateAccountRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/mql5_background.v1.RuscignoMetatrader5Service/CreateAccount", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/mql5_background.v1.TransactionSService/CreateAccount", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *ruscignoMetatrader5ServiceClient) CreateDeals(ctx context.Context, in *CreateDealsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *transactionSServiceClient) CreateDeals(ctx context.Context, in *CreateDealsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/mql5_background.v1.RuscignoMetatrader5Service/CreateDeals", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/mql5_background.v1.TransactionSService/CreateDeals", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *ruscignoMetatrader5ServiceClient) CreateOrders(ctx context.Context, in *CreateOrdersRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *transactionSServiceClient) CreateOrders(ctx context.Context, in *CreateOrdersRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/mql5_background.v1.RuscignoMetatrader5Service/CreateOrders", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/mql5_background.v1.TransactionSService/CreateOrders", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *ruscignoMetatrader5ServiceClient) CreatePositions(ctx context.Context, in *CreatePositionsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *transactionSServiceClient) CreatePositions(ctx context.Context, in *CreatePositionsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/mql5_background.v1.RuscignoMetatrader5Service/CreatePositions", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/mql5_background.v1.TransactionSService/CreatePositions", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *ruscignoMetatrader5ServiceClient) CreateTradeTransaction(ctx context.Context, in *CreateTradeTransactionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/mql5_background.v1.RuscignoMetatrader5Service/CreateTradeTransaction", in, out, opts...)
+func (c *transactionSServiceClient) CreateTradeTransaction(ctx context.Context, in *CreateTradeTransactionRequest, opts ...grpc.CallOption) (*GetSignalDealsResponse, error) {
+	out := new(GetSignalDealsResponse)
+	err := c.cc.Invoke(ctx, "/mql5_background.v1.TransactionSService/CreateTradeTransaction", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// RuscignoMetatrader5ServiceServer is the server API for RuscignoMetatrader5Service service.
-// All implementations must embed UnimplementedRuscignoMetatrader5ServiceServer
+// TransactionSServiceServer is the server API for TransactionSService service.
+// All implementations must embed UnimplementedTransactionSServiceServer
 // for forward compatibility
-type RuscignoMetatrader5ServiceServer interface {
+type TransactionSServiceServer interface {
 	// Creates a new account
 	CreateAccount(context.Context, *CreateAccountRequest) (*emptypb.Empty, error)
 	// Creates a new deal
@@ -97,159 +185,158 @@ type RuscignoMetatrader5ServiceServer interface {
 	// Creates a new position
 	CreatePositions(context.Context, *CreatePositionsRequest) (*emptypb.Empty, error)
 	// Creates a trade transation
-	CreateTradeTransaction(context.Context, *CreateTradeTransactionRequest) (*emptypb.Empty, error)
-	mustEmbedUnimplementedRuscignoMetatrader5ServiceServer()
+	CreateTradeTransaction(context.Context, *CreateTradeTransactionRequest) (*GetSignalDealsResponse, error)
+	mustEmbedUnimplementedTransactionSServiceServer()
 }
 
-// UnimplementedRuscignoMetatrader5ServiceServer must be embedded to have forward compatible implementations.
-type UnimplementedRuscignoMetatrader5ServiceServer struct {
+// UnimplementedTransactionSServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedTransactionSServiceServer struct {
 }
 
-func (UnimplementedRuscignoMetatrader5ServiceServer) CreateAccount(context.Context, *CreateAccountRequest) (*emptypb.Empty, error) {
+func (UnimplementedTransactionSServiceServer) CreateAccount(context.Context, *CreateAccountRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateAccount not implemented")
 }
-func (UnimplementedRuscignoMetatrader5ServiceServer) CreateDeals(context.Context, *CreateDealsRequest) (*emptypb.Empty, error) {
+func (UnimplementedTransactionSServiceServer) CreateDeals(context.Context, *CreateDealsRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateDeals not implemented")
 }
-func (UnimplementedRuscignoMetatrader5ServiceServer) CreateOrders(context.Context, *CreateOrdersRequest) (*emptypb.Empty, error) {
+func (UnimplementedTransactionSServiceServer) CreateOrders(context.Context, *CreateOrdersRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateOrders not implemented")
 }
-func (UnimplementedRuscignoMetatrader5ServiceServer) CreatePositions(context.Context, *CreatePositionsRequest) (*emptypb.Empty, error) {
+func (UnimplementedTransactionSServiceServer) CreatePositions(context.Context, *CreatePositionsRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreatePositions not implemented")
 }
-func (UnimplementedRuscignoMetatrader5ServiceServer) CreateTradeTransaction(context.Context, *CreateTradeTransactionRequest) (*emptypb.Empty, error) {
+func (UnimplementedTransactionSServiceServer) CreateTradeTransaction(context.Context, *CreateTradeTransactionRequest) (*GetSignalDealsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateTradeTransaction not implemented")
 }
-func (UnimplementedRuscignoMetatrader5ServiceServer) mustEmbedUnimplementedRuscignoMetatrader5ServiceServer() {
-}
+func (UnimplementedTransactionSServiceServer) mustEmbedUnimplementedTransactionSServiceServer() {}
 
-// UnsafeRuscignoMetatrader5ServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to RuscignoMetatrader5ServiceServer will
+// UnsafeTransactionSServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to TransactionSServiceServer will
 // result in compilation errors.
-type UnsafeRuscignoMetatrader5ServiceServer interface {
-	mustEmbedUnimplementedRuscignoMetatrader5ServiceServer()
+type UnsafeTransactionSServiceServer interface {
+	mustEmbedUnimplementedTransactionSServiceServer()
 }
 
-func RegisterRuscignoMetatrader5ServiceServer(s grpc.ServiceRegistrar, srv RuscignoMetatrader5ServiceServer) {
-	s.RegisterService(&RuscignoMetatrader5Service_ServiceDesc, srv)
+func RegisterTransactionSServiceServer(s grpc.ServiceRegistrar, srv TransactionSServiceServer) {
+	s.RegisterService(&TransactionSService_ServiceDesc, srv)
 }
 
-func _RuscignoMetatrader5Service_CreateAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TransactionSService_CreateAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateAccountRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RuscignoMetatrader5ServiceServer).CreateAccount(ctx, in)
+		return srv.(TransactionSServiceServer).CreateAccount(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/mql5_background.v1.RuscignoMetatrader5Service/CreateAccount",
+		FullMethod: "/mql5_background.v1.TransactionSService/CreateAccount",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RuscignoMetatrader5ServiceServer).CreateAccount(ctx, req.(*CreateAccountRequest))
+		return srv.(TransactionSServiceServer).CreateAccount(ctx, req.(*CreateAccountRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _RuscignoMetatrader5Service_CreateDeals_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TransactionSService_CreateDeals_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateDealsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RuscignoMetatrader5ServiceServer).CreateDeals(ctx, in)
+		return srv.(TransactionSServiceServer).CreateDeals(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/mql5_background.v1.RuscignoMetatrader5Service/CreateDeals",
+		FullMethod: "/mql5_background.v1.TransactionSService/CreateDeals",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RuscignoMetatrader5ServiceServer).CreateDeals(ctx, req.(*CreateDealsRequest))
+		return srv.(TransactionSServiceServer).CreateDeals(ctx, req.(*CreateDealsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _RuscignoMetatrader5Service_CreateOrders_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TransactionSService_CreateOrders_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateOrdersRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RuscignoMetatrader5ServiceServer).CreateOrders(ctx, in)
+		return srv.(TransactionSServiceServer).CreateOrders(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/mql5_background.v1.RuscignoMetatrader5Service/CreateOrders",
+		FullMethod: "/mql5_background.v1.TransactionSService/CreateOrders",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RuscignoMetatrader5ServiceServer).CreateOrders(ctx, req.(*CreateOrdersRequest))
+		return srv.(TransactionSServiceServer).CreateOrders(ctx, req.(*CreateOrdersRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _RuscignoMetatrader5Service_CreatePositions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TransactionSService_CreatePositions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreatePositionsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RuscignoMetatrader5ServiceServer).CreatePositions(ctx, in)
+		return srv.(TransactionSServiceServer).CreatePositions(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/mql5_background.v1.RuscignoMetatrader5Service/CreatePositions",
+		FullMethod: "/mql5_background.v1.TransactionSService/CreatePositions",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RuscignoMetatrader5ServiceServer).CreatePositions(ctx, req.(*CreatePositionsRequest))
+		return srv.(TransactionSServiceServer).CreatePositions(ctx, req.(*CreatePositionsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _RuscignoMetatrader5Service_CreateTradeTransaction_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TransactionSService_CreateTradeTransaction_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateTradeTransactionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RuscignoMetatrader5ServiceServer).CreateTradeTransaction(ctx, in)
+		return srv.(TransactionSServiceServer).CreateTradeTransaction(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/mql5_background.v1.RuscignoMetatrader5Service/CreateTradeTransaction",
+		FullMethod: "/mql5_background.v1.TransactionSService/CreateTradeTransaction",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RuscignoMetatrader5ServiceServer).CreateTradeTransaction(ctx, req.(*CreateTradeTransactionRequest))
+		return srv.(TransactionSServiceServer).CreateTradeTransaction(ctx, req.(*CreateTradeTransactionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// RuscignoMetatrader5Service_ServiceDesc is the grpc.ServiceDesc for RuscignoMetatrader5Service service.
+// TransactionSService_ServiceDesc is the grpc.ServiceDesc for TransactionSService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var RuscignoMetatrader5Service_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "mql5_background.v1.RuscignoMetatrader5Service",
-	HandlerType: (*RuscignoMetatrader5ServiceServer)(nil),
+var TransactionSService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "mql5_background.v1.TransactionSService",
+	HandlerType: (*TransactionSServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "CreateAccount",
-			Handler:    _RuscignoMetatrader5Service_CreateAccount_Handler,
+			Handler:    _TransactionSService_CreateAccount_Handler,
 		},
 		{
 			MethodName: "CreateDeals",
-			Handler:    _RuscignoMetatrader5Service_CreateDeals_Handler,
+			Handler:    _TransactionSService_CreateDeals_Handler,
 		},
 		{
 			MethodName: "CreateOrders",
-			Handler:    _RuscignoMetatrader5Service_CreateOrders_Handler,
+			Handler:    _TransactionSService_CreateOrders_Handler,
 		},
 		{
 			MethodName: "CreatePositions",
-			Handler:    _RuscignoMetatrader5Service_CreatePositions_Handler,
+			Handler:    _TransactionSService_CreatePositions_Handler,
 		},
 		{
 			MethodName: "CreateTradeTransaction",
-			Handler:    _RuscignoMetatrader5Service_CreateTradeTransaction_Handler,
+			Handler:    _TransactionSService_CreateTradeTransaction_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
