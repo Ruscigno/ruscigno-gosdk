@@ -651,7 +651,7 @@ var file_api_proto_rawDesc = []byte{
 	0x1a, 0x2a, 0x2e, 0x6d, 0x71, 0x6c, 0x35, 0x5f, 0x62, 0x61, 0x63, 0x6b, 0x67, 0x72, 0x6f, 0x75,
 	0x6e, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x47, 0x65, 0x74, 0x53, 0x69, 0x67, 0x6e, 0x61, 0x6c, 0x44,
 	0x65, 0x61, 0x6c, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x32, 0xd8, 0x03, 0x0a,
-	0x13, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x61, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x53, 0x65, 0x72,
+	0x13, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x61, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x53, 0x65, 0x72,
 	0x76, 0x69, 0x63, 0x65, 0x12, 0x51, 0x0a, 0x0d, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x41, 0x63,
 	0x63, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x28, 0x2e, 0x6d, 0x71, 0x6c, 0x35, 0x5f, 0x62, 0x61, 0x63,
 	0x6b, 0x67, 0x72, 0x6f, 0x75, 0x6e, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74,
@@ -729,17 +729,17 @@ var file_api_proto_depIdxs = []int32{
 	17, // 8: mql5_background.v1.GetSignalDealsResponse.server_time:type_name -> google.protobuf.Timestamp
 	10, // 9: mql5_background.v1.GetSignalDealsResponse.deals:type_name -> mql5_background.v1.Deal
 	7,  // 10: mql5_background.v1.TickerBeatsService.GetSignalDeals:input_type -> mql5_background.v1.GetSignalDealsRequest
-	2,  // 11: mql5_background.v1.TransactionSService.CreateAccount:input_type -> mql5_background.v1.CreateAccountRequest
-	3,  // 12: mql5_background.v1.TransactionSService.CreateDeals:input_type -> mql5_background.v1.CreateDealsRequest
-	4,  // 13: mql5_background.v1.TransactionSService.CreateOrders:input_type -> mql5_background.v1.CreateOrdersRequest
-	5,  // 14: mql5_background.v1.TransactionSService.CreatePositions:input_type -> mql5_background.v1.CreatePositionsRequest
-	6,  // 15: mql5_background.v1.TransactionSService.CreateTradeTransaction:input_type -> mql5_background.v1.CreateTradeTransactionRequest
+	2,  // 11: mql5_background.v1.TransactionsService.CreateAccount:input_type -> mql5_background.v1.CreateAccountRequest
+	3,  // 12: mql5_background.v1.TransactionsService.CreateDeals:input_type -> mql5_background.v1.CreateDealsRequest
+	4,  // 13: mql5_background.v1.TransactionsService.CreateOrders:input_type -> mql5_background.v1.CreateOrdersRequest
+	5,  // 14: mql5_background.v1.TransactionsService.CreatePositions:input_type -> mql5_background.v1.CreatePositionsRequest
+	6,  // 15: mql5_background.v1.TransactionsService.CreateTradeTransaction:input_type -> mql5_background.v1.CreateTradeTransactionRequest
 	8,  // 16: mql5_background.v1.TickerBeatsService.GetSignalDeals:output_type -> mql5_background.v1.GetSignalDealsResponse
-	18, // 17: mql5_background.v1.TransactionSService.CreateAccount:output_type -> google.protobuf.Empty
-	18, // 18: mql5_background.v1.TransactionSService.CreateDeals:output_type -> google.protobuf.Empty
-	18, // 19: mql5_background.v1.TransactionSService.CreateOrders:output_type -> google.protobuf.Empty
-	18, // 20: mql5_background.v1.TransactionSService.CreatePositions:output_type -> google.protobuf.Empty
-	8,  // 21: mql5_background.v1.TransactionSService.CreateTradeTransaction:output_type -> mql5_background.v1.GetSignalDealsResponse
+	18, // 17: mql5_background.v1.TransactionsService.CreateAccount:output_type -> google.protobuf.Empty
+	18, // 18: mql5_background.v1.TransactionsService.CreateDeals:output_type -> google.protobuf.Empty
+	18, // 19: mql5_background.v1.TransactionsService.CreateOrders:output_type -> google.protobuf.Empty
+	18, // 20: mql5_background.v1.TransactionsService.CreatePositions:output_type -> google.protobuf.Empty
+	8,  // 21: mql5_background.v1.TransactionsService.CreateTradeTransaction:output_type -> mql5_background.v1.GetSignalDealsResponse
 	16, // [16:22] is the sub-list for method output_type
 	10, // [10:16] is the sub-list for method input_type
 	10, // [10:10] is the sub-list for extension type_name

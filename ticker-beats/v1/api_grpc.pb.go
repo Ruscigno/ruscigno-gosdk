@@ -103,10 +103,10 @@ var TickerBeatsService_ServiceDesc = grpc.ServiceDesc{
 	Metadata: "api.proto",
 }
 
-// TransactionSServiceClient is the client API for TransactionSService service.
+// TransactionsServiceClient is the client API for TransactionsService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type TransactionSServiceClient interface {
+type TransactionsServiceClient interface {
 	// Creates a new account
 	CreateAccount(ctx context.Context, in *CreateAccountRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Creates a new deal
@@ -119,63 +119,63 @@ type TransactionSServiceClient interface {
 	CreateTradeTransaction(ctx context.Context, in *CreateTradeTransactionRequest, opts ...grpc.CallOption) (*GetSignalDealsResponse, error)
 }
 
-type transactionSServiceClient struct {
+type transactionsServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewTransactionSServiceClient(cc grpc.ClientConnInterface) TransactionSServiceClient {
-	return &transactionSServiceClient{cc}
+func NewTransactionsServiceClient(cc grpc.ClientConnInterface) TransactionsServiceClient {
+	return &transactionsServiceClient{cc}
 }
 
-func (c *transactionSServiceClient) CreateAccount(ctx context.Context, in *CreateAccountRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *transactionsServiceClient) CreateAccount(ctx context.Context, in *CreateAccountRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/mql5_background.v1.TransactionSService/CreateAccount", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/mql5_background.v1.TransactionsService/CreateAccount", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *transactionSServiceClient) CreateDeals(ctx context.Context, in *CreateDealsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *transactionsServiceClient) CreateDeals(ctx context.Context, in *CreateDealsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/mql5_background.v1.TransactionSService/CreateDeals", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/mql5_background.v1.TransactionsService/CreateDeals", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *transactionSServiceClient) CreateOrders(ctx context.Context, in *CreateOrdersRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *transactionsServiceClient) CreateOrders(ctx context.Context, in *CreateOrdersRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/mql5_background.v1.TransactionSService/CreateOrders", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/mql5_background.v1.TransactionsService/CreateOrders", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *transactionSServiceClient) CreatePositions(ctx context.Context, in *CreatePositionsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *transactionsServiceClient) CreatePositions(ctx context.Context, in *CreatePositionsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/mql5_background.v1.TransactionSService/CreatePositions", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/mql5_background.v1.TransactionsService/CreatePositions", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *transactionSServiceClient) CreateTradeTransaction(ctx context.Context, in *CreateTradeTransactionRequest, opts ...grpc.CallOption) (*GetSignalDealsResponse, error) {
+func (c *transactionsServiceClient) CreateTradeTransaction(ctx context.Context, in *CreateTradeTransactionRequest, opts ...grpc.CallOption) (*GetSignalDealsResponse, error) {
 	out := new(GetSignalDealsResponse)
-	err := c.cc.Invoke(ctx, "/mql5_background.v1.TransactionSService/CreateTradeTransaction", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/mql5_background.v1.TransactionsService/CreateTradeTransaction", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// TransactionSServiceServer is the server API for TransactionSService service.
-// All implementations must embed UnimplementedTransactionSServiceServer
+// TransactionsServiceServer is the server API for TransactionsService service.
+// All implementations must embed UnimplementedTransactionsServiceServer
 // for forward compatibility
-type TransactionSServiceServer interface {
+type TransactionsServiceServer interface {
 	// Creates a new account
 	CreateAccount(context.Context, *CreateAccountRequest) (*emptypb.Empty, error)
 	// Creates a new deal
@@ -186,157 +186,157 @@ type TransactionSServiceServer interface {
 	CreatePositions(context.Context, *CreatePositionsRequest) (*emptypb.Empty, error)
 	// Creates a trade transation
 	CreateTradeTransaction(context.Context, *CreateTradeTransactionRequest) (*GetSignalDealsResponse, error)
-	mustEmbedUnimplementedTransactionSServiceServer()
+	mustEmbedUnimplementedTransactionsServiceServer()
 }
 
-// UnimplementedTransactionSServiceServer must be embedded to have forward compatible implementations.
-type UnimplementedTransactionSServiceServer struct {
+// UnimplementedTransactionsServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedTransactionsServiceServer struct {
 }
 
-func (UnimplementedTransactionSServiceServer) CreateAccount(context.Context, *CreateAccountRequest) (*emptypb.Empty, error) {
+func (UnimplementedTransactionsServiceServer) CreateAccount(context.Context, *CreateAccountRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateAccount not implemented")
 }
-func (UnimplementedTransactionSServiceServer) CreateDeals(context.Context, *CreateDealsRequest) (*emptypb.Empty, error) {
+func (UnimplementedTransactionsServiceServer) CreateDeals(context.Context, *CreateDealsRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateDeals not implemented")
 }
-func (UnimplementedTransactionSServiceServer) CreateOrders(context.Context, *CreateOrdersRequest) (*emptypb.Empty, error) {
+func (UnimplementedTransactionsServiceServer) CreateOrders(context.Context, *CreateOrdersRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateOrders not implemented")
 }
-func (UnimplementedTransactionSServiceServer) CreatePositions(context.Context, *CreatePositionsRequest) (*emptypb.Empty, error) {
+func (UnimplementedTransactionsServiceServer) CreatePositions(context.Context, *CreatePositionsRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreatePositions not implemented")
 }
-func (UnimplementedTransactionSServiceServer) CreateTradeTransaction(context.Context, *CreateTradeTransactionRequest) (*GetSignalDealsResponse, error) {
+func (UnimplementedTransactionsServiceServer) CreateTradeTransaction(context.Context, *CreateTradeTransactionRequest) (*GetSignalDealsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateTradeTransaction not implemented")
 }
-func (UnimplementedTransactionSServiceServer) mustEmbedUnimplementedTransactionSServiceServer() {}
+func (UnimplementedTransactionsServiceServer) mustEmbedUnimplementedTransactionsServiceServer() {}
 
-// UnsafeTransactionSServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to TransactionSServiceServer will
+// UnsafeTransactionsServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to TransactionsServiceServer will
 // result in compilation errors.
-type UnsafeTransactionSServiceServer interface {
-	mustEmbedUnimplementedTransactionSServiceServer()
+type UnsafeTransactionsServiceServer interface {
+	mustEmbedUnimplementedTransactionsServiceServer()
 }
 
-func RegisterTransactionSServiceServer(s grpc.ServiceRegistrar, srv TransactionSServiceServer) {
-	s.RegisterService(&TransactionSService_ServiceDesc, srv)
+func RegisterTransactionsServiceServer(s grpc.ServiceRegistrar, srv TransactionsServiceServer) {
+	s.RegisterService(&TransactionsService_ServiceDesc, srv)
 }
 
-func _TransactionSService_CreateAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TransactionsService_CreateAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateAccountRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TransactionSServiceServer).CreateAccount(ctx, in)
+		return srv.(TransactionsServiceServer).CreateAccount(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/mql5_background.v1.TransactionSService/CreateAccount",
+		FullMethod: "/mql5_background.v1.TransactionsService/CreateAccount",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionSServiceServer).CreateAccount(ctx, req.(*CreateAccountRequest))
+		return srv.(TransactionsServiceServer).CreateAccount(ctx, req.(*CreateAccountRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TransactionSService_CreateDeals_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TransactionsService_CreateDeals_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateDealsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TransactionSServiceServer).CreateDeals(ctx, in)
+		return srv.(TransactionsServiceServer).CreateDeals(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/mql5_background.v1.TransactionSService/CreateDeals",
+		FullMethod: "/mql5_background.v1.TransactionsService/CreateDeals",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionSServiceServer).CreateDeals(ctx, req.(*CreateDealsRequest))
+		return srv.(TransactionsServiceServer).CreateDeals(ctx, req.(*CreateDealsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TransactionSService_CreateOrders_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TransactionsService_CreateOrders_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateOrdersRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TransactionSServiceServer).CreateOrders(ctx, in)
+		return srv.(TransactionsServiceServer).CreateOrders(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/mql5_background.v1.TransactionSService/CreateOrders",
+		FullMethod: "/mql5_background.v1.TransactionsService/CreateOrders",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionSServiceServer).CreateOrders(ctx, req.(*CreateOrdersRequest))
+		return srv.(TransactionsServiceServer).CreateOrders(ctx, req.(*CreateOrdersRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TransactionSService_CreatePositions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TransactionsService_CreatePositions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreatePositionsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TransactionSServiceServer).CreatePositions(ctx, in)
+		return srv.(TransactionsServiceServer).CreatePositions(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/mql5_background.v1.TransactionSService/CreatePositions",
+		FullMethod: "/mql5_background.v1.TransactionsService/CreatePositions",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionSServiceServer).CreatePositions(ctx, req.(*CreatePositionsRequest))
+		return srv.(TransactionsServiceServer).CreatePositions(ctx, req.(*CreatePositionsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TransactionSService_CreateTradeTransaction_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TransactionsService_CreateTradeTransaction_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateTradeTransactionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TransactionSServiceServer).CreateTradeTransaction(ctx, in)
+		return srv.(TransactionsServiceServer).CreateTradeTransaction(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/mql5_background.v1.TransactionSService/CreateTradeTransaction",
+		FullMethod: "/mql5_background.v1.TransactionsService/CreateTradeTransaction",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionSServiceServer).CreateTradeTransaction(ctx, req.(*CreateTradeTransactionRequest))
+		return srv.(TransactionsServiceServer).CreateTradeTransaction(ctx, req.(*CreateTradeTransactionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// TransactionSService_ServiceDesc is the grpc.ServiceDesc for TransactionSService service.
+// TransactionsService_ServiceDesc is the grpc.ServiceDesc for TransactionsService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var TransactionSService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "mql5_background.v1.TransactionSService",
-	HandlerType: (*TransactionSServiceServer)(nil),
+var TransactionsService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "mql5_background.v1.TransactionsService",
+	HandlerType: (*TransactionsServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "CreateAccount",
-			Handler:    _TransactionSService_CreateAccount_Handler,
+			Handler:    _TransactionsService_CreateAccount_Handler,
 		},
 		{
 			MethodName: "CreateDeals",
-			Handler:    _TransactionSService_CreateDeals_Handler,
+			Handler:    _TransactionsService_CreateDeals_Handler,
 		},
 		{
 			MethodName: "CreateOrders",
-			Handler:    _TransactionSService_CreateOrders_Handler,
+			Handler:    _TransactionsService_CreateOrders_Handler,
 		},
 		{
 			MethodName: "CreatePositions",
-			Handler:    _TransactionSService_CreatePositions_Handler,
+			Handler:    _TransactionsService_CreatePositions_Handler,
 		},
 		{
 			MethodName: "CreateTradeTransaction",
-			Handler:    _TransactionSService_CreateTradeTransaction_Handler,
+			Handler:    _TransactionsService_CreateTradeTransaction_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
