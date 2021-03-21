@@ -1,3 +1,6 @@
+## v0.19.4
+- feat: plain int32 fields type
+
 ## v0.19.3
 - feat: improve TickerBeats response
 
