@@ -1,3 +1,6 @@
+## v0.19.5
+- feat: rolling back changes
+
 ## v0.19.4
 - feat: plain int32 fields type
 
