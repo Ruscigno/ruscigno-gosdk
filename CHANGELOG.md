@@ -1,3 +1,6 @@
+## v0.19.7
+- fix: names
+
 ## v0.19.6
 - feat: implementation of TickerTrades
 
