@@ -19,7 +19,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TickerBeatsServiceClient interface {
-	GetTickerBeats(ctx context.Context, in *TickerBeatsRequest, opts ...grpc.CallOption) (*TradeBeatsResponse, error)
+	GetTickerBeats(ctx context.Context, in *TickerBeatsRequest, opts ...grpc.CallOption) (*TickerBeatsResponse, error)
 }
 
 type tickerBeatsServiceClient struct {
@@ -30,8 +30,8 @@ func NewTickerBeatsServiceClient(cc grpc.ClientConnInterface) TickerBeatsService
 	return &tickerBeatsServiceClient{cc}
 }
 
-func (c *tickerBeatsServiceClient) GetTickerBeats(ctx context.Context, in *TickerBeatsRequest, opts ...grpc.CallOption) (*TradeBeatsResponse, error) {
-	out := new(TradeBeatsResponse)
+func (c *tickerBeatsServiceClient) GetTickerBeats(ctx context.Context, in *TickerBeatsRequest, opts ...grpc.CallOption) (*TickerBeatsResponse, error) {
+	out := new(TickerBeatsResponse)
 	err := c.cc.Invoke(ctx, "/tickerbeats.v1.TickerBeatsService/GetTickerBeats", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -43,7 +43,7 @@ func (c *tickerBeatsServiceClient) GetTickerBeats(ctx context.Context, in *Ticke
 // All implementations must embed UnimplementedTickerBeatsServiceServer
 // for forward compatibility
 type TickerBeatsServiceServer interface {
-	GetTickerBeats(context.Context, *TickerBeatsRequest) (*TradeBeatsResponse, error)
+	GetTickerBeats(context.Context, *TickerBeatsRequest) (*TickerBeatsResponse, error)
 	mustEmbedUnimplementedTickerBeatsServiceServer()
 }
 
@@ -51,7 +51,7 @@ type TickerBeatsServiceServer interface {
 type UnimplementedTickerBeatsServiceServer struct {
 }
 
-func (UnimplementedTickerBeatsServiceServer) GetTickerBeats(context.Context, *TickerBeatsRequest) (*TradeBeatsResponse, error) {
+func (UnimplementedTickerBeatsServiceServer) GetTickerBeats(context.Context, *TickerBeatsRequest) (*TickerBeatsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTickerBeats not implemented")
 }
 func (UnimplementedTickerBeatsServiceServer) mustEmbedUnimplementedTickerBeatsServiceServer() {}
