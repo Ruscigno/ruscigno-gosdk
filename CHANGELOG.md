@@ -1,3 +1,6 @@
+## v0.19.6
+- feat: implementation of TickerTrades
+
 ## v0.19.5
 - feat: rolling back changes
 

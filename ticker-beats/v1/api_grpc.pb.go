@@ -20,7 +20,8 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TickerBeatsServiceClient interface {
 	// Gets all deals from the signals
-	GetTickerBeats(ctx context.Context, in *GetTickerBeatsRequest, opts ...grpc.CallOption) (*GetTickerBeatsResponse, error)
+	GetDealBeats(ctx context.Context, in *GetTickerBeatsRequest, opts ...grpc.CallOption) (*GetTickerDealsResponse, error)
+	GetTickerTrades(ctx context.Context, in *GetTickerBeatsRequest, opts ...grpc.CallOption) (*GetTickerTradesResponse, error)
 }
 
 type tickerBeatsServiceClient struct {
@@ -31,9 +32,18 @@ func NewTickerBeatsServiceClient(cc grpc.ClientConnInterface) TickerBeatsService
 	return &tickerBeatsServiceClient{cc}
 }
 
-func (c *tickerBeatsServiceClient) GetTickerBeats(ctx context.Context, in *GetTickerBeatsRequest, opts ...grpc.CallOption) (*GetTickerBeatsResponse, error) {
-	out := new(GetTickerBeatsResponse)
-	err := c.cc.Invoke(ctx, "/tickerbeats.v1.TickerBeatsService/GetTickerBeats", in, out, opts...)
+func (c *tickerBeatsServiceClient) GetDealBeats(ctx context.Context, in *GetTickerBeatsRequest, opts ...grpc.CallOption) (*GetTickerDealsResponse, error) {
+	out := new(GetTickerDealsResponse)
+	err := c.cc.Invoke(ctx, "/tickerbeats.v1.TickerBeatsService/GetDealBeats", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tickerBeatsServiceClient) GetTickerTrades(ctx context.Context, in *GetTickerBeatsRequest, opts ...grpc.CallOption) (*GetTickerTradesResponse, error) {
+	out := new(GetTickerTradesResponse)
+	err := c.cc.Invoke(ctx, "/tickerbeats.v1.TickerBeatsService/GetTickerTrades", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -45,7 +55,8 @@ func (c *tickerBeatsServiceClient) GetTickerBeats(ctx context.Context, in *GetTi
 // for forward compatibility
 type TickerBeatsServiceServer interface {
 	// Gets all deals from the signals
-	GetTickerBeats(context.Context, *GetTickerBeatsRequest) (*GetTickerBeatsResponse, error)
+	GetDealBeats(context.Context, *GetTickerBeatsRequest) (*GetTickerDealsResponse, error)
+	GetTickerTrades(context.Context, *GetTickerBeatsRequest) (*GetTickerTradesResponse, error)
 	mustEmbedUnimplementedTickerBeatsServiceServer()
 }
 
@@ -53,8 +64,11 @@ type TickerBeatsServiceServer interface {
 type UnimplementedTickerBeatsServiceServer struct {
 }
 
-func (UnimplementedTickerBeatsServiceServer) GetTickerBeats(context.Context, *GetTickerBeatsRequest) (*GetTickerBeatsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetTickerBeats not implemented")
+func (UnimplementedTickerBeatsServiceServer) GetDealBeats(context.Context, *GetTickerBeatsRequest) (*GetTickerDealsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDealBeats not implemented")
+}
+func (UnimplementedTickerBeatsServiceServer) GetTickerTrades(context.Context, *GetTickerBeatsRequest) (*GetTickerTradesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTickerTrades not implemented")
 }
 func (UnimplementedTickerBeatsServiceServer) mustEmbedUnimplementedTickerBeatsServiceServer() {}
 
@@ -69,20 +83,38 @@ func RegisterTickerBeatsServiceServer(s grpc.ServiceRegistrar, srv TickerBeatsSe
 	s.RegisterService(&TickerBeatsService_ServiceDesc, srv)
 }
 
-func _TickerBeatsService_GetTickerBeats_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TickerBeatsService_GetDealBeats_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetTickerBeatsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TickerBeatsServiceServer).GetTickerBeats(ctx, in)
+		return srv.(TickerBeatsServiceServer).GetDealBeats(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/tickerbeats.v1.TickerBeatsService/GetTickerBeats",
+		FullMethod: "/tickerbeats.v1.TickerBeatsService/GetDealBeats",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TickerBeatsServiceServer).GetTickerBeats(ctx, req.(*GetTickerBeatsRequest))
+		return srv.(TickerBeatsServiceServer).GetDealBeats(ctx, req.(*GetTickerBeatsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TickerBeatsService_GetTickerTrades_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTickerBeatsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TickerBeatsServiceServer).GetTickerTrades(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/tickerbeats.v1.TickerBeatsService/GetTickerTrades",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TickerBeatsServiceServer).GetTickerTrades(ctx, req.(*GetTickerBeatsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -95,8 +127,12 @@ var TickerBeatsService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*TickerBeatsServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetTickerBeats",
-			Handler:    _TickerBeatsService_GetTickerBeats_Handler,
+			MethodName: "GetDealBeats",
+			Handler:    _TickerBeatsService_GetDealBeats_Handler,
+		},
+		{
+			MethodName: "GetTickerTrades",
+			Handler:    _TickerBeatsService_GetTickerTrades_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
