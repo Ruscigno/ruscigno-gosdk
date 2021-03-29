@@ -1,3 +1,6 @@
+## v0.19.12
+- feat: add magic number to positions
+
 ## v0.19.11
 - feat: return a list of positions instead of deals
 
