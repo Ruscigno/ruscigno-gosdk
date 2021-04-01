@@ -1,3 +1,6 @@
+## v0.21.2
+- feat: datetime as integer
+
 ## v0.21.1
 - feat: add ID to the model
 
