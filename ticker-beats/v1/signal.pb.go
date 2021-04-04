@@ -35,6 +35,53 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// SignalType: type of the signal
+type SignalType int32
+
+const (
+	SignalType_SIGINAL_TYPE_ORDER    SignalType = 0 //Order beats
+	SignalType_SIGINAL_TYPE_POSITION SignalType = 1 //Position beats
+)
+
+// Enum value maps for SignalType.
+var (
+	SignalType_name = map[int32]string{
+		0: "SIGINAL_TYPE_ORDER",
+		1: "SIGINAL_TYPE_POSITION",
+	}
+	SignalType_value = map[string]int32{
+		"SIGINAL_TYPE_ORDER":    0,
+		"SIGINAL_TYPE_POSITION": 1,
+	}
+)
+
+func (x SignalType) Enum() *SignalType {
+	p := new(SignalType)
+	*p = x
+	return p
+}
+
+func (x SignalType) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (SignalType) Descriptor() protoreflect.EnumDescriptor {
+	return file_signal_proto_enumTypes[0].Descriptor()
+}
+
+func (SignalType) Type() protoreflect.EnumType {
+	return &file_signal_proto_enumTypes[0]
+}
+
+func (x SignalType) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use SignalType.Descriptor instead.
+func (SignalType) EnumDescriptor() ([]byte, []int) {
+	return file_signal_proto_rawDescGZIP(), []int{0}
+}
+
 type Signal struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -314,7 +361,11 @@ var file_signal_proto_rawDesc = []byte{
 	0x07, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a,
 	0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66,
 	0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x52, 0x07, 0x55, 0x70, 0x64, 0x61,
-	0x74, 0x65, 0x64, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x74, 0x65, 0x64, 0x2a, 0x3f, 0x0a, 0x0a, 0x53, 0x69, 0x67, 0x6e, 0x61, 0x6c, 0x54, 0x79, 0x70,
+	0x65, 0x12, 0x16, 0x0a, 0x12, 0x53, 0x49, 0x47, 0x49, 0x4e, 0x41, 0x4c, 0x5f, 0x54, 0x59, 0x50,
+	0x45, 0x5f, 0x4f, 0x52, 0x44, 0x45, 0x52, 0x10, 0x00, 0x12, 0x19, 0x0a, 0x15, 0x53, 0x49, 0x47,
+	0x49, 0x4e, 0x41, 0x4c, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x50, 0x4f, 0x53, 0x49, 0x54, 0x49,
+	0x4f, 0x4e, 0x10, 0x01, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -329,17 +380,19 @@ func file_signal_proto_rawDescGZIP() []byte {
 	return file_signal_proto_rawDescData
 }
 
+var file_signal_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_signal_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_signal_proto_goTypes = []interface{}{
-	(*Signal)(nil),                // 0: tickerbeats.v1.Signal
-	(*SignalResult)(nil),          // 1: tickerbeats.v1.SignalResult
-	(*timestamppb.Timestamp)(nil), // 2: google.protobuf.Timestamp
+	(SignalType)(0),               // 0: tickerbeats.v1.SignalType
+	(*Signal)(nil),                // 1: tickerbeats.v1.Signal
+	(*SignalResult)(nil),          // 2: tickerbeats.v1.SignalResult
+	(*timestamppb.Timestamp)(nil), // 3: google.protobuf.Timestamp
 }
 var file_signal_proto_depIdxs = []int32{
-	2, // 0: tickerbeats.v1.SignalResult.SentTime:type_name -> google.protobuf.Timestamp
-	2, // 1: tickerbeats.v1.SignalResult.ConfirmationTime:type_name -> google.protobuf.Timestamp
-	2, // 2: tickerbeats.v1.SignalResult.Created:type_name -> google.protobuf.Timestamp
-	2, // 3: tickerbeats.v1.SignalResult.Updated:type_name -> google.protobuf.Timestamp
+	3, // 0: tickerbeats.v1.SignalResult.SentTime:type_name -> google.protobuf.Timestamp
+	3, // 1: tickerbeats.v1.SignalResult.ConfirmationTime:type_name -> google.protobuf.Timestamp
+	3, // 2: tickerbeats.v1.SignalResult.Created:type_name -> google.protobuf.Timestamp
+	3, // 3: tickerbeats.v1.SignalResult.Updated:type_name -> google.protobuf.Timestamp
 	4, // [4:4] is the sub-list for method output_type
 	4, // [4:4] is the sub-list for method input_type
 	4, // [4:4] is the sub-list for extension type_name
@@ -383,13 +436,14 @@ func file_signal_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_signal_proto_rawDesc,
-			NumEnums:      0,
+			NumEnums:      1,
 			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
 		GoTypes:           file_signal_proto_goTypes,
 		DependencyIndexes: file_signal_proto_depIdxs,
+		EnumInfos:         file_signal_proto_enumTypes,
 		MessageInfos:      file_signal_proto_msgTypes,
 	}.Build()
 	File_signal_proto = out.File
