@@ -1,3 +1,6 @@
+## v0.21.4
+- feat: add beats type to the request
+
 ## v0.21.3
 - feat: return orders and positions 
 
