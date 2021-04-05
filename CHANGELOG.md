@@ -1,3 +1,6 @@
+## v0.21.6
+- feat: created, updated, deleted as int64
+
 ## v0.21.5
 - feat: add beats type enum
 
