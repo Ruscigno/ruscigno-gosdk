@@ -1,3 +1,6 @@
+## v0.21.9
+- feat: add TradeRequest on signal beats response
+
 ## v0.21.8
 - feat: rollback SignalType
 
