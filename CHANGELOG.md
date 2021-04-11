@@ -1,3 +1,6 @@
+## v0.21.10
+- feat: add Direction field to Orders model
+
 ## v0.21.9
 - feat: add TradeRequest on signal beats response
 
