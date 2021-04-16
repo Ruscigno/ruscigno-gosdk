@@ -20,7 +20,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TickerBeatsServiceClient interface {
 	GetTickerBeats(ctx context.Context, in *TickerBeatsRequest, opts ...grpc.CallOption) (*TickerBeatsResponse, error)
-	GetTickerBeatsOrders(ctx context.Context, in *TickerBeatsRequest, opts ...grpc.CallOption) (*TickerBeatsResponse, error)
+	ConfirmBeatsTransaction(ctx context.Context, in *TickerBeatsConfirmationRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type tickerBeatsServiceClient struct {
@@ -40,9 +40,9 @@ func (c *tickerBeatsServiceClient) GetTickerBeats(ctx context.Context, in *Ticke
 	return out, nil
 }
 
-func (c *tickerBeatsServiceClient) GetTickerBeatsOrders(ctx context.Context, in *TickerBeatsRequest, opts ...grpc.CallOption) (*TickerBeatsResponse, error) {
-	out := new(TickerBeatsResponse)
-	err := c.cc.Invoke(ctx, "/tickerbeats.v1.TickerBeatsService/GetTickerBeatsOrders", in, out, opts...)
+func (c *tickerBeatsServiceClient) ConfirmBeatsTransaction(ctx context.Context, in *TickerBeatsConfirmationRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, "/tickerbeats.v1.TickerBeatsService/ConfirmBeatsTransaction", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -54,7 +54,7 @@ func (c *tickerBeatsServiceClient) GetTickerBeatsOrders(ctx context.Context, in 
 // for forward compatibility
 type TickerBeatsServiceServer interface {
 	GetTickerBeats(context.Context, *TickerBeatsRequest) (*TickerBeatsResponse, error)
-	GetTickerBeatsOrders(context.Context, *TickerBeatsRequest) (*TickerBeatsResponse, error)
+	ConfirmBeatsTransaction(context.Context, *TickerBeatsConfirmationRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedTickerBeatsServiceServer()
 }
 
@@ -65,8 +65,8 @@ type UnimplementedTickerBeatsServiceServer struct {
 func (UnimplementedTickerBeatsServiceServer) GetTickerBeats(context.Context, *TickerBeatsRequest) (*TickerBeatsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTickerBeats not implemented")
 }
-func (UnimplementedTickerBeatsServiceServer) GetTickerBeatsOrders(context.Context, *TickerBeatsRequest) (*TickerBeatsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetTickerBeatsOrders not implemented")
+func (UnimplementedTickerBeatsServiceServer) ConfirmBeatsTransaction(context.Context, *TickerBeatsConfirmationRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ConfirmBeatsTransaction not implemented")
 }
 func (UnimplementedTickerBeatsServiceServer) mustEmbedUnimplementedTickerBeatsServiceServer() {}
 
@@ -99,20 +99,20 @@ func _TickerBeatsService_GetTickerBeats_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TickerBeatsService_GetTickerBeatsOrders_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TickerBeatsRequest)
+func _TickerBeatsService_ConfirmBeatsTransaction_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TickerBeatsConfirmationRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TickerBeatsServiceServer).GetTickerBeatsOrders(ctx, in)
+		return srv.(TickerBeatsServiceServer).ConfirmBeatsTransaction(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/tickerbeats.v1.TickerBeatsService/GetTickerBeatsOrders",
+		FullMethod: "/tickerbeats.v1.TickerBeatsService/ConfirmBeatsTransaction",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TickerBeatsServiceServer).GetTickerBeatsOrders(ctx, req.(*TickerBeatsRequest))
+		return srv.(TickerBeatsServiceServer).ConfirmBeatsTransaction(ctx, req.(*TickerBeatsConfirmationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -129,8 +129,8 @@ var TickerBeatsService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _TickerBeatsService_GetTickerBeats_Handler,
 		},
 		{
-			MethodName: "GetTickerBeatsOrders",
-			Handler:    _TickerBeatsService_GetTickerBeatsOrders_Handler,
+			MethodName: "ConfirmBeatsTransaction",
+			Handler:    _TickerBeatsService_ConfirmBeatsTransaction_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

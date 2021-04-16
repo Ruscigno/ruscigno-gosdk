@@ -1,3 +1,6 @@
+## v0.22.0
+- feat: ticker beats synch, try II
+
 ## v0.21.11
 - feat: add server time to the request
 
