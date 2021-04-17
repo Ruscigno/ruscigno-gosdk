@@ -1,3 +1,6 @@
+## v0.22.1
+- feat: improve names
+
 ## v0.22.0
 - feat: ticker beats synch, try II
 
