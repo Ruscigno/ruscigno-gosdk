@@ -1,3 +1,6 @@
+## v0.22.3
+- fix: expiration_time as int32
+
 ## v0.22.2
 - fix: TickerBeatsResponse
 
