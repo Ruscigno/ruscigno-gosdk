@@ -1,3 +1,6 @@
+## v0.22.4
+- fix: enum values
+
 ## v0.22.3
 - fix: expiration_time as int32
 

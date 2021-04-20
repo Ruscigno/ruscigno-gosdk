@@ -93,14 +93,14 @@ type Signal struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	SignalId             int64   `protobuf:"varint,1,opt,name=SignalId,proto3" json:"SignalId,omitempty"`
-	SourceAccountId      int64   `protobuf:"varint,2,opt,name=SourceAccountId,proto3" json:"SourceAccountId,omitempty"`
-	DestinationAccountId int64   `protobuf:"varint,3,opt,name=DestinationAccountId,proto3" json:"DestinationAccountId,omitempty"`
-	Active               bool    `protobuf:"varint,4,opt,name=Active,proto3" json:"Active,omitempty"`
-	MaxDeposit           int32   `protobuf:"varint,5,opt,name=MaxDeposit,proto3" json:"MaxDeposit,omitempty"`
-	StopIfLessThan       int32   `protobuf:"varint,6,opt,name=StopIfLessThan,proto3" json:"StopIfLessThan,omitempty"`
-	MaxSpread            float64 `protobuf:"fixed64,7,opt,name=MaxSpread,proto3" json:"MaxSpread,omitempty"`
-	MinutesToExpire      int32   `protobuf:"varint,8,opt,name=MinutesToExpire,proto3" json:"MinutesToExpire,omitempty"`
+	SignalId             int64 `protobuf:"varint,1,opt,name=SignalId,proto3" json:"SignalId,omitempty"`
+	SourceAccountId      int64 `protobuf:"varint,2,opt,name=SourceAccountId,proto3" json:"SourceAccountId,omitempty"`
+	DestinationAccountId int64 `protobuf:"varint,3,opt,name=DestinationAccountId,proto3" json:"DestinationAccountId,omitempty"`
+	Active               bool  `protobuf:"varint,4,opt,name=Active,proto3" json:"Active,omitempty"`
+	MaxDeposit           int32 `protobuf:"varint,5,opt,name=MaxDeposit,proto3" json:"MaxDeposit,omitempty"`
+	StopIfLessThan       int32 `protobuf:"varint,6,opt,name=StopIfLessThan,proto3" json:"StopIfLessThan,omitempty"`
+	MaxSpread            int64 `protobuf:"varint,7,opt,name=MaxSpread,proto3" json:"MaxSpread,omitempty"`
+	MinutesToExpire      int32 `protobuf:"varint,8,opt,name=MinutesToExpire,proto3" json:"MinutesToExpire,omitempty"`
 }
 
 func (x *Signal) Reset() {
@@ -177,7 +177,7 @@ func (x *Signal) GetStopIfLessThan() int32 {
 	return 0
 }
 
-func (x *Signal) GetMaxSpread() float64 {
+func (x *Signal) GetMaxSpread() int64 {
 	if x != nil {
 		return x.MaxSpread
 	}
@@ -332,7 +332,7 @@ var file_signal_proto_rawDesc = []byte{
 	0x53, 0x74, 0x6f, 0x70, 0x49, 0x66, 0x4c, 0x65, 0x73, 0x73, 0x54, 0x68, 0x61, 0x6e, 0x18, 0x06,
 	0x20, 0x01, 0x28, 0x05, 0x52, 0x0e, 0x53, 0x74, 0x6f, 0x70, 0x49, 0x66, 0x4c, 0x65, 0x73, 0x73,
 	0x54, 0x68, 0x61, 0x6e, 0x12, 0x1c, 0x0a, 0x09, 0x4d, 0x61, 0x78, 0x53, 0x70, 0x72, 0x65, 0x61,
-	0x64, 0x18, 0x07, 0x20, 0x01, 0x28, 0x01, 0x52, 0x09, 0x4d, 0x61, 0x78, 0x53, 0x70, 0x72, 0x65,
+	0x64, 0x18, 0x07, 0x20, 0x01, 0x28, 0x03, 0x52, 0x09, 0x4d, 0x61, 0x78, 0x53, 0x70, 0x72, 0x65,
 	0x61, 0x64, 0x12, 0x28, 0x0a, 0x0f, 0x4d, 0x69, 0x6e, 0x75, 0x74, 0x65, 0x73, 0x54, 0x6f, 0x45,
 	0x78, 0x70, 0x69, 0x72, 0x65, 0x18, 0x08, 0x20, 0x01, 0x28, 0x05, 0x52, 0x0f, 0x4d, 0x69, 0x6e,
 	0x75, 0x74, 0x65, 0x73, 0x54, 0x6f, 0x45, 0x78, 0x70, 0x69, 0x72, 0x65, 0x22, 0xf6, 0x03, 0x0a,
