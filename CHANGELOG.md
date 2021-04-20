@@ -1,3 +1,6 @@
+## v0.22.5
+- feat: add deal entry field to transaction
+
 ## v0.22.4
 - fix: enum values
 
