@@ -1,3 +1,6 @@
+## v0.22.6
+- feat: add TimeGMTOffset to the model
+
 ## v0.22.5
 - feat: add deal entry field to transaction
 
