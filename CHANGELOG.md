@@ -1,3 +1,6 @@
+## v0.22.7
+- feat: add TimeGMTOffset to the model
+
 ## v0.22.6
 - feat: add TimeGMTOffset to the model
 
