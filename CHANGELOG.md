@@ -1,3 +1,6 @@
+## v0.22.8
+- feat: saving times and offsets
+
 ## v0.22.7
 - feat: add TimeGMTOffset to the model
 
