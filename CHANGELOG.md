@@ -1,3 +1,7 @@
+## v0.22.9
+- feat: datetime as in64
+- feat: TimeGMTOffset in all models
+
 ## v0.22.8
 - feat: saving times and offsets
 
