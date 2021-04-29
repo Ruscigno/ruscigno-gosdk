@@ -82,36 +82,88 @@ func (PositionType) EnumDescriptor() ([]byte, []int) {
 	return file_position_proto_rawDescGZIP(), []int{0}
 }
 
+type PositionReason int32
+
+const (
+	PositionReason_POSITION_REASON_CLIENT PositionReason = 0 //The position was opened as a result of activation of an order placed from a desktop terminal
+	PositionReason_POSITION_REASON_MOBILE PositionReason = 1 //The position was opened as a result of activation of an order placed from a mobile application
+	PositionReason_POSITION_REASON_WEB    PositionReason = 2 //The position was opened as a result of activation of an order placed from the web platform
+	PositionReason_POSITION_REASON_EXPERT PositionReason = 3 //The position was opened as a result of activation of an order placed from an MQL5 program, i.e. an Expert Advisor or a script
+)
+
+// Enum value maps for PositionReason.
+var (
+	PositionReason_name = map[int32]string{
+		0: "POSITION_REASON_CLIENT",
+		1: "POSITION_REASON_MOBILE",
+		2: "POSITION_REASON_WEB",
+		3: "POSITION_REASON_EXPERT",
+	}
+	PositionReason_value = map[string]int32{
+		"POSITION_REASON_CLIENT": 0,
+		"POSITION_REASON_MOBILE": 1,
+		"POSITION_REASON_WEB":    2,
+		"POSITION_REASON_EXPERT": 3,
+	}
+)
+
+func (x PositionReason) Enum() *PositionReason {
+	p := new(PositionReason)
+	*p = x
+	return p
+}
+
+func (x PositionReason) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (PositionReason) Descriptor() protoreflect.EnumDescriptor {
+	return file_position_proto_enumTypes[1].Descriptor()
+}
+
+func (PositionReason) Type() protoreflect.EnumType {
+	return &file_position_proto_enumTypes[1]
+}
+
+func (x PositionReason) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use PositionReason.Descriptor instead.
+func (PositionReason) EnumDescriptor() ([]byte, []int) {
+	return file_position_proto_rawDescGZIP(), []int{1}
+}
+
 // Position: Execution of trade operations results in the opening of a position
 type Position struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	PositionId     int64        `protobuf:"varint,1,opt,name=position_id,json=positionId,proto3" json:"position_id,omitempty"`
-	AccountId      int64        `protobuf:"varint,2,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"`
-	Ticket         int64        `protobuf:"varint,3,opt,name=ticket,proto3" json:"ticket,omitempty"`
-	Symbol         string       `protobuf:"bytes,4,opt,name=symbol,proto3" json:"symbol,omitempty"`
-	PositionTime   int64        `protobuf:"varint,5,opt,name=position_time,json=positionTime,proto3" json:"position_time,omitempty"`
-	PositionType   PositionType `protobuf:"varint,6,opt,name=position_type,json=positionType,proto3,enum=tickerbeats.v1.PositionType" json:"position_type,omitempty"`
-	Volume         float64      `protobuf:"fixed64,7,opt,name=volume,proto3" json:"volume,omitempty"`
-	PriceOpen      float64      `protobuf:"fixed64,8,opt,name=price_open,json=priceOpen,proto3" json:"price_open,omitempty"`
-	StopLoss       float64      `protobuf:"fixed64,9,opt,name=stop_loss,json=stopLoss,proto3" json:"stop_loss,omitempty"`
-	TakeProfit     float64      `protobuf:"fixed64,10,opt,name=take_profit,json=takeProfit,proto3" json:"take_profit,omitempty"`
-	PriceCurrent   float64      `protobuf:"fixed64,11,opt,name=price_current,json=priceCurrent,proto3" json:"price_current,omitempty"`
-	Commission     float64      `protobuf:"fixed64,12,opt,name=commission,proto3" json:"commission,omitempty"`
-	Swap           float64      `protobuf:"fixed64,13,opt,name=swap,proto3" json:"swap,omitempty"`
-	Profit         float64      `protobuf:"fixed64,14,opt,name=profit,proto3" json:"profit,omitempty"`
-	Identifier     int64        `protobuf:"varint,15,opt,name=identifier,proto3" json:"identifier,omitempty"`
-	Comment        string       `protobuf:"bytes,16,opt,name=comment,proto3" json:"comment,omitempty"`
-	Created        int64        `protobuf:"varint,17,opt,name=created,proto3" json:"created,omitempty"`
-	Updated        int64        `protobuf:"varint,18,opt,name=updated,proto3" json:"updated,omitempty"`
-	Deleted        int64        `protobuf:"varint,19,opt,name=deleted,proto3" json:"deleted,omitempty"`
-	PositionUpdate int64        `protobuf:"varint,20,opt,name=position_update,json=positionUpdate,proto3" json:"position_update,omitempty"`
-	Reason         int64        `protobuf:"varint,21,opt,name=reason,proto3" json:"reason,omitempty"`
-	ExternalId     string       `protobuf:"bytes,22,opt,name=external_id,json=externalId,proto3" json:"external_id,omitempty"`
-	Magic          int64        `protobuf:"varint,23,opt,name=magic,proto3" json:"magic,omitempty"`
-	TimeGMTOffset  int64        `protobuf:"varint,24,opt,name=TimeGMTOffset,proto3" json:"TimeGMTOffset,omitempty"`
+	PositionId     int64          `protobuf:"varint,1,opt,name=position_id,json=positionId,proto3" json:"position_id,omitempty"`
+	AccountId      int64          `protobuf:"varint,2,opt,name=account_id,json=accountId,proto3" json:"account_id,omitempty"`
+	Ticket         int64          `protobuf:"varint,3,opt,name=ticket,proto3" json:"ticket,omitempty"`
+	Symbol         string         `protobuf:"bytes,4,opt,name=symbol,proto3" json:"symbol,omitempty"`
+	PositionTime   int64          `protobuf:"varint,5,opt,name=position_time,json=positionTime,proto3" json:"position_time,omitempty"`
+	PositionType   PositionType   `protobuf:"varint,6,opt,name=position_type,json=positionType,proto3,enum=tickerbeats.v1.PositionType" json:"position_type,omitempty"`
+	Volume         float64        `protobuf:"fixed64,7,opt,name=volume,proto3" json:"volume,omitempty"`
+	PriceOpen      float64        `protobuf:"fixed64,8,opt,name=price_open,json=priceOpen,proto3" json:"price_open,omitempty"`
+	StopLoss       float64        `protobuf:"fixed64,9,opt,name=stop_loss,json=stopLoss,proto3" json:"stop_loss,omitempty"`
+	TakeProfit     float64        `protobuf:"fixed64,10,opt,name=take_profit,json=takeProfit,proto3" json:"take_profit,omitempty"`
+	PriceCurrent   float64        `protobuf:"fixed64,11,opt,name=price_current,json=priceCurrent,proto3" json:"price_current,omitempty"`
+	Commission     float64        `protobuf:"fixed64,12,opt,name=commission,proto3" json:"commission,omitempty"`
+	Swap           float64        `protobuf:"fixed64,13,opt,name=swap,proto3" json:"swap,omitempty"`
+	Profit         float64        `protobuf:"fixed64,14,opt,name=profit,proto3" json:"profit,omitempty"`
+	Identifier     int64          `protobuf:"varint,15,opt,name=identifier,proto3" json:"identifier,omitempty"`
+	Comment        string         `protobuf:"bytes,16,opt,name=comment,proto3" json:"comment,omitempty"`
+	Created        int64          `protobuf:"varint,17,opt,name=created,proto3" json:"created,omitempty"`
+	Updated        int64          `protobuf:"varint,18,opt,name=updated,proto3" json:"updated,omitempty"`
+	Deleted        int64          `protobuf:"varint,19,opt,name=deleted,proto3" json:"deleted,omitempty"`
+	PositionUpdate int64          `protobuf:"varint,20,opt,name=position_update,json=positionUpdate,proto3" json:"position_update,omitempty"`
+	Reason         PositionReason `protobuf:"varint,21,opt,name=reason,proto3,enum=tickerbeats.v1.PositionReason" json:"reason,omitempty"`
+	ExternalId     string         `protobuf:"bytes,22,opt,name=external_id,json=externalId,proto3" json:"external_id,omitempty"`
+	Magic          int64          `protobuf:"varint,23,opt,name=magic,proto3" json:"magic,omitempty"`
+	TimeGMTOffset  int64          `protobuf:"varint,24,opt,name=TimeGMTOffset,proto3" json:"TimeGMTOffset,omitempty"`
 }
 
 func (x *Position) Reset() {
@@ -286,11 +338,11 @@ func (x *Position) GetPositionUpdate() int64 {
 	return 0
 }
 
-func (x *Position) GetReason() int64 {
+func (x *Position) GetReason() PositionReason {
 	if x != nil {
 		return x.Reason
 	}
-	return 0
+	return PositionReason_POSITION_REASON_CLIENT
 }
 
 func (x *Position) GetExternalId() string {
@@ -321,7 +373,7 @@ var file_position_proto_rawDesc = []byte{
 	0x12, 0x0e, 0x74, 0x69, 0x63, 0x6b, 0x65, 0x72, 0x62, 0x65, 0x61, 0x74, 0x73, 0x2e, 0x76, 0x31,
 	0x1a, 0x1f, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75,
 	0x66, 0x2f, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x2e, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x22, 0xee, 0x05, 0x0a, 0x08, 0x50, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x1f,
+	0x6f, 0x22, 0x8e, 0x06, 0x0a, 0x08, 0x50, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x1f,
 	0x0a, 0x0b, 0x70, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20,
 	0x01, 0x28, 0x03, 0x52, 0x0a, 0x70, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x49, 0x64, 0x12,
 	0x1d, 0x0a, 0x0a, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20,
@@ -360,8 +412,10 @@ var file_position_proto_rawDesc = []byte{
 	0x6c, 0x65, 0x74, 0x65, 0x64, 0x18, 0x13, 0x20, 0x01, 0x28, 0x03, 0x52, 0x07, 0x64, 0x65, 0x6c,
 	0x65, 0x74, 0x65, 0x64, 0x12, 0x27, 0x0a, 0x0f, 0x70, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e,
 	0x5f, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x18, 0x14, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0e, 0x70,
-	0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x12, 0x16, 0x0a,
-	0x06, 0x72, 0x65, 0x61, 0x73, 0x6f, 0x6e, 0x18, 0x15, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x72,
+	0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x12, 0x36, 0x0a,
+	0x06, 0x72, 0x65, 0x61, 0x73, 0x6f, 0x6e, 0x18, 0x15, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x1e, 0x2e,
+	0x74, 0x69, 0x63, 0x6b, 0x65, 0x72, 0x62, 0x65, 0x61, 0x74, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x50,
+	0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x61, 0x73, 0x6f, 0x6e, 0x52, 0x06, 0x72,
 	0x65, 0x61, 0x73, 0x6f, 0x6e, 0x12, 0x1f, 0x0a, 0x0b, 0x65, 0x78, 0x74, 0x65, 0x72, 0x6e, 0x61,
 	0x6c, 0x5f, 0x69, 0x64, 0x18, 0x16, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x65, 0x78, 0x74, 0x65,
 	0x72, 0x6e, 0x61, 0x6c, 0x49, 0x64, 0x12, 0x14, 0x0a, 0x05, 0x6d, 0x61, 0x67, 0x69, 0x63, 0x18,
@@ -372,7 +426,15 @@ var file_position_proto_rawDesc = []byte{
 	0x70, 0x65, 0x12, 0x15, 0x0a, 0x11, 0x50, 0x4f, 0x53, 0x49, 0x54, 0x49, 0x4f, 0x4e, 0x5f, 0x54,
 	0x59, 0x50, 0x45, 0x5f, 0x42, 0x55, 0x59, 0x10, 0x00, 0x12, 0x16, 0x0a, 0x12, 0x50, 0x4f, 0x53,
 	0x49, 0x54, 0x49, 0x4f, 0x4e, 0x5f, 0x54, 0x59, 0x50, 0x45, 0x5f, 0x53, 0x45, 0x4c, 0x4c, 0x10,
-	0x01, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x01, 0x2a, 0x7d, 0x0a, 0x0e, 0x50, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x61,
+	0x73, 0x6f, 0x6e, 0x12, 0x1a, 0x0a, 0x16, 0x50, 0x4f, 0x53, 0x49, 0x54, 0x49, 0x4f, 0x4e, 0x5f,
+	0x52, 0x45, 0x41, 0x53, 0x4f, 0x4e, 0x5f, 0x43, 0x4c, 0x49, 0x45, 0x4e, 0x54, 0x10, 0x00, 0x12,
+	0x1a, 0x0a, 0x16, 0x50, 0x4f, 0x53, 0x49, 0x54, 0x49, 0x4f, 0x4e, 0x5f, 0x52, 0x45, 0x41, 0x53,
+	0x4f, 0x4e, 0x5f, 0x4d, 0x4f, 0x42, 0x49, 0x4c, 0x45, 0x10, 0x01, 0x12, 0x17, 0x0a, 0x13, 0x50,
+	0x4f, 0x53, 0x49, 0x54, 0x49, 0x4f, 0x4e, 0x5f, 0x52, 0x45, 0x41, 0x53, 0x4f, 0x4e, 0x5f, 0x57,
+	0x45, 0x42, 0x10, 0x02, 0x12, 0x1a, 0x0a, 0x16, 0x50, 0x4f, 0x53, 0x49, 0x54, 0x49, 0x4f, 0x4e,
+	0x5f, 0x52, 0x45, 0x41, 0x53, 0x4f, 0x4e, 0x5f, 0x45, 0x58, 0x50, 0x45, 0x52, 0x54, 0x10, 0x03,
+	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -387,19 +449,21 @@ func file_position_proto_rawDescGZIP() []byte {
 	return file_position_proto_rawDescData
 }
 
-var file_position_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_position_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
 var file_position_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_position_proto_goTypes = []interface{}{
-	(PositionType)(0), // 0: tickerbeats.v1.PositionType
-	(*Position)(nil),  // 1: tickerbeats.v1.Position
+	(PositionType)(0),   // 0: tickerbeats.v1.PositionType
+	(PositionReason)(0), // 1: tickerbeats.v1.PositionReason
+	(*Position)(nil),    // 2: tickerbeats.v1.Position
 }
 var file_position_proto_depIdxs = []int32{
 	0, // 0: tickerbeats.v1.Position.position_type:type_name -> tickerbeats.v1.PositionType
-	1, // [1:1] is the sub-list for method output_type
-	1, // [1:1] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	1, // 1: tickerbeats.v1.Position.reason:type_name -> tickerbeats.v1.PositionReason
+	2, // [2:2] is the sub-list for method output_type
+	2, // [2:2] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_position_proto_init() }
@@ -426,7 +490,7 @@ func file_position_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_position_proto_rawDesc,
-			NumEnums:      1,
+			NumEnums:      2,
 			NumMessages:   1,
 			NumExtensions: 0,
 			NumServices:   0,
