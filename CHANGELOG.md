@@ -1,3 +1,6 @@
+## v0.22.14
+- feat: add TimeGMT
+
 ## v0.22.13
 - feat: Return all unsynced deals
 
