@@ -1,3 +1,6 @@
+## v0.23.1
+-feat: updating fields
+
 ## v0.23.0
 - feat: enqueuer status
   
