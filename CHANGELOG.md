@@ -1,3 +1,6 @@
+## v0.22.16
+- fix: server name
+
 ## v0.22.15
 - feat: update ticker-beats protos
 - feat: create ticker-scraper protos

@@ -15,194 +15,194 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// TransactionsServiceClient is the client API for TransactionsService service.
+// EnqueuerServiceClient is the client API for EnqueuerService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type TransactionsServiceClient interface {
+type EnqueuerServiceClient interface {
 	CreateEnqueuer(ctx context.Context, in *EnqueuerMessage, opts ...grpc.CallOption) (*EnqueuerIdMessage, error)
 	ListEnqueuer(ctx context.Context, in *EnqueuerIdMessage, opts ...grpc.CallOption) (*EnqueuerMessage, error)
 	StartEnqueuer(ctx context.Context, in *EnqueuerIdMessage, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	StopEnqueuer(ctx context.Context, in *EnqueuerIdMessage, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
-type transactionsServiceClient struct {
+type enqueuerServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewTransactionsServiceClient(cc grpc.ClientConnInterface) TransactionsServiceClient {
-	return &transactionsServiceClient{cc}
+func NewEnqueuerServiceClient(cc grpc.ClientConnInterface) EnqueuerServiceClient {
+	return &enqueuerServiceClient{cc}
 }
 
-func (c *transactionsServiceClient) CreateEnqueuer(ctx context.Context, in *EnqueuerMessage, opts ...grpc.CallOption) (*EnqueuerIdMessage, error) {
+func (c *enqueuerServiceClient) CreateEnqueuer(ctx context.Context, in *EnqueuerMessage, opts ...grpc.CallOption) (*EnqueuerIdMessage, error) {
 	out := new(EnqueuerIdMessage)
-	err := c.cc.Invoke(ctx, "/tickerscraper.v1.TransactionsService/CreateEnqueuer", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/tickerscraper.v1.EnqueuerService/CreateEnqueuer", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *transactionsServiceClient) ListEnqueuer(ctx context.Context, in *EnqueuerIdMessage, opts ...grpc.CallOption) (*EnqueuerMessage, error) {
+func (c *enqueuerServiceClient) ListEnqueuer(ctx context.Context, in *EnqueuerIdMessage, opts ...grpc.CallOption) (*EnqueuerMessage, error) {
 	out := new(EnqueuerMessage)
-	err := c.cc.Invoke(ctx, "/tickerscraper.v1.TransactionsService/ListEnqueuer", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/tickerscraper.v1.EnqueuerService/ListEnqueuer", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *transactionsServiceClient) StartEnqueuer(ctx context.Context, in *EnqueuerIdMessage, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *enqueuerServiceClient) StartEnqueuer(ctx context.Context, in *EnqueuerIdMessage, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/tickerscraper.v1.TransactionsService/StartEnqueuer", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/tickerscraper.v1.EnqueuerService/StartEnqueuer", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *transactionsServiceClient) StopEnqueuer(ctx context.Context, in *EnqueuerIdMessage, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *enqueuerServiceClient) StopEnqueuer(ctx context.Context, in *EnqueuerIdMessage, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/tickerscraper.v1.TransactionsService/StopEnqueuer", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/tickerscraper.v1.EnqueuerService/StopEnqueuer", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// TransactionsServiceServer is the server API for TransactionsService service.
-// All implementations must embed UnimplementedTransactionsServiceServer
+// EnqueuerServiceServer is the server API for EnqueuerService service.
+// All implementations must embed UnimplementedEnqueuerServiceServer
 // for forward compatibility
-type TransactionsServiceServer interface {
+type EnqueuerServiceServer interface {
 	CreateEnqueuer(context.Context, *EnqueuerMessage) (*EnqueuerIdMessage, error)
 	ListEnqueuer(context.Context, *EnqueuerIdMessage) (*EnqueuerMessage, error)
 	StartEnqueuer(context.Context, *EnqueuerIdMessage) (*emptypb.Empty, error)
 	StopEnqueuer(context.Context, *EnqueuerIdMessage) (*emptypb.Empty, error)
-	mustEmbedUnimplementedTransactionsServiceServer()
+	mustEmbedUnimplementedEnqueuerServiceServer()
 }
 
-// UnimplementedTransactionsServiceServer must be embedded to have forward compatible implementations.
-type UnimplementedTransactionsServiceServer struct {
+// UnimplementedEnqueuerServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedEnqueuerServiceServer struct {
 }
 
-func (UnimplementedTransactionsServiceServer) CreateEnqueuer(context.Context, *EnqueuerMessage) (*EnqueuerIdMessage, error) {
+func (UnimplementedEnqueuerServiceServer) CreateEnqueuer(context.Context, *EnqueuerMessage) (*EnqueuerIdMessage, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateEnqueuer not implemented")
 }
-func (UnimplementedTransactionsServiceServer) ListEnqueuer(context.Context, *EnqueuerIdMessage) (*EnqueuerMessage, error) {
+func (UnimplementedEnqueuerServiceServer) ListEnqueuer(context.Context, *EnqueuerIdMessage) (*EnqueuerMessage, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListEnqueuer not implemented")
 }
-func (UnimplementedTransactionsServiceServer) StartEnqueuer(context.Context, *EnqueuerIdMessage) (*emptypb.Empty, error) {
+func (UnimplementedEnqueuerServiceServer) StartEnqueuer(context.Context, *EnqueuerIdMessage) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method StartEnqueuer not implemented")
 }
-func (UnimplementedTransactionsServiceServer) StopEnqueuer(context.Context, *EnqueuerIdMessage) (*emptypb.Empty, error) {
+func (UnimplementedEnqueuerServiceServer) StopEnqueuer(context.Context, *EnqueuerIdMessage) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method StopEnqueuer not implemented")
 }
-func (UnimplementedTransactionsServiceServer) mustEmbedUnimplementedTransactionsServiceServer() {}
+func (UnimplementedEnqueuerServiceServer) mustEmbedUnimplementedEnqueuerServiceServer() {}
 
-// UnsafeTransactionsServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to TransactionsServiceServer will
+// UnsafeEnqueuerServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to EnqueuerServiceServer will
 // result in compilation errors.
-type UnsafeTransactionsServiceServer interface {
-	mustEmbedUnimplementedTransactionsServiceServer()
+type UnsafeEnqueuerServiceServer interface {
+	mustEmbedUnimplementedEnqueuerServiceServer()
 }
 
-func RegisterTransactionsServiceServer(s grpc.ServiceRegistrar, srv TransactionsServiceServer) {
-	s.RegisterService(&TransactionsService_ServiceDesc, srv)
+func RegisterEnqueuerServiceServer(s grpc.ServiceRegistrar, srv EnqueuerServiceServer) {
+	s.RegisterService(&EnqueuerService_ServiceDesc, srv)
 }
 
-func _TransactionsService_CreateEnqueuer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _EnqueuerService_CreateEnqueuer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(EnqueuerMessage)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TransactionsServiceServer).CreateEnqueuer(ctx, in)
+		return srv.(EnqueuerServiceServer).CreateEnqueuer(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/tickerscraper.v1.TransactionsService/CreateEnqueuer",
+		FullMethod: "/tickerscraper.v1.EnqueuerService/CreateEnqueuer",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionsServiceServer).CreateEnqueuer(ctx, req.(*EnqueuerMessage))
+		return srv.(EnqueuerServiceServer).CreateEnqueuer(ctx, req.(*EnqueuerMessage))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TransactionsService_ListEnqueuer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _EnqueuerService_ListEnqueuer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(EnqueuerIdMessage)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TransactionsServiceServer).ListEnqueuer(ctx, in)
+		return srv.(EnqueuerServiceServer).ListEnqueuer(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/tickerscraper.v1.TransactionsService/ListEnqueuer",
+		FullMethod: "/tickerscraper.v1.EnqueuerService/ListEnqueuer",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionsServiceServer).ListEnqueuer(ctx, req.(*EnqueuerIdMessage))
+		return srv.(EnqueuerServiceServer).ListEnqueuer(ctx, req.(*EnqueuerIdMessage))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TransactionsService_StartEnqueuer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _EnqueuerService_StartEnqueuer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(EnqueuerIdMessage)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TransactionsServiceServer).StartEnqueuer(ctx, in)
+		return srv.(EnqueuerServiceServer).StartEnqueuer(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/tickerscraper.v1.TransactionsService/StartEnqueuer",
+		FullMethod: "/tickerscraper.v1.EnqueuerService/StartEnqueuer",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionsServiceServer).StartEnqueuer(ctx, req.(*EnqueuerIdMessage))
+		return srv.(EnqueuerServiceServer).StartEnqueuer(ctx, req.(*EnqueuerIdMessage))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TransactionsService_StopEnqueuer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _EnqueuerService_StopEnqueuer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(EnqueuerIdMessage)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TransactionsServiceServer).StopEnqueuer(ctx, in)
+		return srv.(EnqueuerServiceServer).StopEnqueuer(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/tickerscraper.v1.TransactionsService/StopEnqueuer",
+		FullMethod: "/tickerscraper.v1.EnqueuerService/StopEnqueuer",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionsServiceServer).StopEnqueuer(ctx, req.(*EnqueuerIdMessage))
+		return srv.(EnqueuerServiceServer).StopEnqueuer(ctx, req.(*EnqueuerIdMessage))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// TransactionsService_ServiceDesc is the grpc.ServiceDesc for TransactionsService service.
+// EnqueuerService_ServiceDesc is the grpc.ServiceDesc for EnqueuerService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var TransactionsService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "tickerscraper.v1.TransactionsService",
-	HandlerType: (*TransactionsServiceServer)(nil),
+var EnqueuerService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "tickerscraper.v1.EnqueuerService",
+	HandlerType: (*EnqueuerServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "CreateEnqueuer",
-			Handler:    _TransactionsService_CreateEnqueuer_Handler,
+			Handler:    _EnqueuerService_CreateEnqueuer_Handler,
 		},
 		{
 			MethodName: "ListEnqueuer",
-			Handler:    _TransactionsService_ListEnqueuer_Handler,
+			Handler:    _EnqueuerService_ListEnqueuer_Handler,
 		},
 		{
 			MethodName: "StartEnqueuer",
-			Handler:    _TransactionsService_StartEnqueuer_Handler,
+			Handler:    _EnqueuerService_StartEnqueuer_Handler,
 		},
 		{
 			MethodName: "StopEnqueuer",
-			Handler:    _TransactionsService_StopEnqueuer_Handler,
+			Handler:    _EnqueuerService_StopEnqueuer_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
