@@ -19,10 +19,10 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type EnqueuerServiceClient interface {
-	CreateEnqueuer(ctx context.Context, in *EnqueuerMessage, opts ...grpc.CallOption) (*EnqueuerIdMessage, error)
+	CreateEnqueuer(ctx context.Context, in *EnqueuerMessage, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	ListEnqueuer(ctx context.Context, in *SourceIdMessage, opts ...grpc.CallOption) (*EnqueuerMessage, error)
-	StartEnqueuer(ctx context.Context, in *EnqueuerIdMessage, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	StopEnqueuer(ctx context.Context, in *EnqueuerIdMessage, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	StartEnqueuer(ctx context.Context, in *SourceIdMessage, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	StopEnqueuer(ctx context.Context, in *SourceIdMessage, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type enqueuerServiceClient struct {
@@ -33,8 +33,8 @@ func NewEnqueuerServiceClient(cc grpc.ClientConnInterface) EnqueuerServiceClient
 	return &enqueuerServiceClient{cc}
 }
 
-func (c *enqueuerServiceClient) CreateEnqueuer(ctx context.Context, in *EnqueuerMessage, opts ...grpc.CallOption) (*EnqueuerIdMessage, error) {
-	out := new(EnqueuerIdMessage)
+func (c *enqueuerServiceClient) CreateEnqueuer(ctx context.Context, in *EnqueuerMessage, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, "/tickerscraper.v1.EnqueuerService/CreateEnqueuer", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -51,7 +51,7 @@ func (c *enqueuerServiceClient) ListEnqueuer(ctx context.Context, in *SourceIdMe
 	return out, nil
 }
 
-func (c *enqueuerServiceClient) StartEnqueuer(ctx context.Context, in *EnqueuerIdMessage, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *enqueuerServiceClient) StartEnqueuer(ctx context.Context, in *SourceIdMessage, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, "/tickerscraper.v1.EnqueuerService/StartEnqueuer", in, out, opts...)
 	if err != nil {
@@ -60,7 +60,7 @@ func (c *enqueuerServiceClient) StartEnqueuer(ctx context.Context, in *EnqueuerI
 	return out, nil
 }
 
-func (c *enqueuerServiceClient) StopEnqueuer(ctx context.Context, in *EnqueuerIdMessage, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *enqueuerServiceClient) StopEnqueuer(ctx context.Context, in *SourceIdMessage, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, "/tickerscraper.v1.EnqueuerService/StopEnqueuer", in, out, opts...)
 	if err != nil {
@@ -73,10 +73,10 @@ func (c *enqueuerServiceClient) StopEnqueuer(ctx context.Context, in *EnqueuerId
 // All implementations must embed UnimplementedEnqueuerServiceServer
 // for forward compatibility
 type EnqueuerServiceServer interface {
-	CreateEnqueuer(context.Context, *EnqueuerMessage) (*EnqueuerIdMessage, error)
+	CreateEnqueuer(context.Context, *EnqueuerMessage) (*emptypb.Empty, error)
 	ListEnqueuer(context.Context, *SourceIdMessage) (*EnqueuerMessage, error)
-	StartEnqueuer(context.Context, *EnqueuerIdMessage) (*emptypb.Empty, error)
-	StopEnqueuer(context.Context, *EnqueuerIdMessage) (*emptypb.Empty, error)
+	StartEnqueuer(context.Context, *SourceIdMessage) (*emptypb.Empty, error)
+	StopEnqueuer(context.Context, *SourceIdMessage) (*emptypb.Empty, error)
 	mustEmbedUnimplementedEnqueuerServiceServer()
 }
 
@@ -84,16 +84,16 @@ type EnqueuerServiceServer interface {
 type UnimplementedEnqueuerServiceServer struct {
 }
 
-func (UnimplementedEnqueuerServiceServer) CreateEnqueuer(context.Context, *EnqueuerMessage) (*EnqueuerIdMessage, error) {
+func (UnimplementedEnqueuerServiceServer) CreateEnqueuer(context.Context, *EnqueuerMessage) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateEnqueuer not implemented")
 }
 func (UnimplementedEnqueuerServiceServer) ListEnqueuer(context.Context, *SourceIdMessage) (*EnqueuerMessage, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListEnqueuer not implemented")
 }
-func (UnimplementedEnqueuerServiceServer) StartEnqueuer(context.Context, *EnqueuerIdMessage) (*emptypb.Empty, error) {
+func (UnimplementedEnqueuerServiceServer) StartEnqueuer(context.Context, *SourceIdMessage) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method StartEnqueuer not implemented")
 }
-func (UnimplementedEnqueuerServiceServer) StopEnqueuer(context.Context, *EnqueuerIdMessage) (*emptypb.Empty, error) {
+func (UnimplementedEnqueuerServiceServer) StopEnqueuer(context.Context, *SourceIdMessage) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method StopEnqueuer not implemented")
 }
 func (UnimplementedEnqueuerServiceServer) mustEmbedUnimplementedEnqueuerServiceServer() {}
@@ -146,7 +146,7 @@ func _EnqueuerService_ListEnqueuer_Handler(srv interface{}, ctx context.Context,
 }
 
 func _EnqueuerService_StartEnqueuer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(EnqueuerIdMessage)
+	in := new(SourceIdMessage)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -158,13 +158,13 @@ func _EnqueuerService_StartEnqueuer_Handler(srv interface{}, ctx context.Context
 		FullMethod: "/tickerscraper.v1.EnqueuerService/StartEnqueuer",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnqueuerServiceServer).StartEnqueuer(ctx, req.(*EnqueuerIdMessage))
+		return srv.(EnqueuerServiceServer).StartEnqueuer(ctx, req.(*SourceIdMessage))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _EnqueuerService_StopEnqueuer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(EnqueuerIdMessage)
+	in := new(SourceIdMessage)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -176,7 +176,7 @@ func _EnqueuerService_StopEnqueuer_Handler(srv interface{}, ctx context.Context,
 		FullMethod: "/tickerscraper.v1.EnqueuerService/StopEnqueuer",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnqueuerServiceServer).StopEnqueuer(ctx, req.(*EnqueuerIdMessage))
+		return srv.(EnqueuerServiceServer).StopEnqueuer(ctx, req.(*SourceIdMessage))
 	}
 	return interceptor(ctx, in, info, handler)
 }
