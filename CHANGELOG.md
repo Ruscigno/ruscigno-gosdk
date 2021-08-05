@@ -1,3 +1,5 @@
+## v0.23.3
+- fix: field type
 ## v0.23.2
 - fix: field type
   
