@@ -1,3 +1,6 @@
+## v0.22.17
+- feat: improve names and change api
+
 ## v0.22.16
 - fix: server name
 
