@@ -15,194 +15,194 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// EnqueuerServiceClient is the client API for EnqueuerService service.
+// CrawlerServiceClient is the client API for CrawlerService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type EnqueuerServiceClient interface {
-	CreateEnqueuer(ctx context.Context, in *EnqueuerMessage, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	ListEnqueuer(ctx context.Context, in *SourceIdMessage, opts ...grpc.CallOption) (*EnqueuerMessage, error)
-	StartEnqueuer(ctx context.Context, in *SourceIdMessage, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	StopEnqueuer(ctx context.Context, in *SourceIdMessage, opts ...grpc.CallOption) (*emptypb.Empty, error)
+type CrawlerServiceClient interface {
+	CreateCrawler(ctx context.Context, in *CrawlerMessage, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	ListCrawler(ctx context.Context, in *SourceIdMessage, opts ...grpc.CallOption) (*CrawlerMessage, error)
+	StartCrawler(ctx context.Context, in *SourceIdMessage, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	StopCrawler(ctx context.Context, in *SourceIdMessage, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
-type enqueuerServiceClient struct {
+type crawlerServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewEnqueuerServiceClient(cc grpc.ClientConnInterface) EnqueuerServiceClient {
-	return &enqueuerServiceClient{cc}
+func NewCrawlerServiceClient(cc grpc.ClientConnInterface) CrawlerServiceClient {
+	return &crawlerServiceClient{cc}
 }
 
-func (c *enqueuerServiceClient) CreateEnqueuer(ctx context.Context, in *EnqueuerMessage, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *crawlerServiceClient) CreateCrawler(ctx context.Context, in *CrawlerMessage, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/tickerscraper.v1.EnqueuerService/CreateEnqueuer", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/tickerscraper.v1.CrawlerService/CreateCrawler", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *enqueuerServiceClient) ListEnqueuer(ctx context.Context, in *SourceIdMessage, opts ...grpc.CallOption) (*EnqueuerMessage, error) {
-	out := new(EnqueuerMessage)
-	err := c.cc.Invoke(ctx, "/tickerscraper.v1.EnqueuerService/ListEnqueuer", in, out, opts...)
+func (c *crawlerServiceClient) ListCrawler(ctx context.Context, in *SourceIdMessage, opts ...grpc.CallOption) (*CrawlerMessage, error) {
+	out := new(CrawlerMessage)
+	err := c.cc.Invoke(ctx, "/tickerscraper.v1.CrawlerService/ListCrawler", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *enqueuerServiceClient) StartEnqueuer(ctx context.Context, in *SourceIdMessage, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *crawlerServiceClient) StartCrawler(ctx context.Context, in *SourceIdMessage, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/tickerscraper.v1.EnqueuerService/StartEnqueuer", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/tickerscraper.v1.CrawlerService/StartCrawler", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *enqueuerServiceClient) StopEnqueuer(ctx context.Context, in *SourceIdMessage, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *crawlerServiceClient) StopCrawler(ctx context.Context, in *SourceIdMessage, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/tickerscraper.v1.EnqueuerService/StopEnqueuer", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/tickerscraper.v1.CrawlerService/StopCrawler", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// EnqueuerServiceServer is the server API for EnqueuerService service.
-// All implementations must embed UnimplementedEnqueuerServiceServer
+// CrawlerServiceServer is the server API for CrawlerService service.
+// All implementations must embed UnimplementedCrawlerServiceServer
 // for forward compatibility
-type EnqueuerServiceServer interface {
-	CreateEnqueuer(context.Context, *EnqueuerMessage) (*emptypb.Empty, error)
-	ListEnqueuer(context.Context, *SourceIdMessage) (*EnqueuerMessage, error)
-	StartEnqueuer(context.Context, *SourceIdMessage) (*emptypb.Empty, error)
-	StopEnqueuer(context.Context, *SourceIdMessage) (*emptypb.Empty, error)
-	mustEmbedUnimplementedEnqueuerServiceServer()
+type CrawlerServiceServer interface {
+	CreateCrawler(context.Context, *CrawlerMessage) (*emptypb.Empty, error)
+	ListCrawler(context.Context, *SourceIdMessage) (*CrawlerMessage, error)
+	StartCrawler(context.Context, *SourceIdMessage) (*emptypb.Empty, error)
+	StopCrawler(context.Context, *SourceIdMessage) (*emptypb.Empty, error)
+	mustEmbedUnimplementedCrawlerServiceServer()
 }
 
-// UnimplementedEnqueuerServiceServer must be embedded to have forward compatible implementations.
-type UnimplementedEnqueuerServiceServer struct {
+// UnimplementedCrawlerServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedCrawlerServiceServer struct {
 }
 
-func (UnimplementedEnqueuerServiceServer) CreateEnqueuer(context.Context, *EnqueuerMessage) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateEnqueuer not implemented")
+func (UnimplementedCrawlerServiceServer) CreateCrawler(context.Context, *CrawlerMessage) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateCrawler not implemented")
 }
-func (UnimplementedEnqueuerServiceServer) ListEnqueuer(context.Context, *SourceIdMessage) (*EnqueuerMessage, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListEnqueuer not implemented")
+func (UnimplementedCrawlerServiceServer) ListCrawler(context.Context, *SourceIdMessage) (*CrawlerMessage, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListCrawler not implemented")
 }
-func (UnimplementedEnqueuerServiceServer) StartEnqueuer(context.Context, *SourceIdMessage) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method StartEnqueuer not implemented")
+func (UnimplementedCrawlerServiceServer) StartCrawler(context.Context, *SourceIdMessage) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StartCrawler not implemented")
 }
-func (UnimplementedEnqueuerServiceServer) StopEnqueuer(context.Context, *SourceIdMessage) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method StopEnqueuer not implemented")
+func (UnimplementedCrawlerServiceServer) StopCrawler(context.Context, *SourceIdMessage) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StopCrawler not implemented")
 }
-func (UnimplementedEnqueuerServiceServer) mustEmbedUnimplementedEnqueuerServiceServer() {}
+func (UnimplementedCrawlerServiceServer) mustEmbedUnimplementedCrawlerServiceServer() {}
 
-// UnsafeEnqueuerServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to EnqueuerServiceServer will
+// UnsafeCrawlerServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to CrawlerServiceServer will
 // result in compilation errors.
-type UnsafeEnqueuerServiceServer interface {
-	mustEmbedUnimplementedEnqueuerServiceServer()
+type UnsafeCrawlerServiceServer interface {
+	mustEmbedUnimplementedCrawlerServiceServer()
 }
 
-func RegisterEnqueuerServiceServer(s grpc.ServiceRegistrar, srv EnqueuerServiceServer) {
-	s.RegisterService(&EnqueuerService_ServiceDesc, srv)
+func RegisterCrawlerServiceServer(s grpc.ServiceRegistrar, srv CrawlerServiceServer) {
+	s.RegisterService(&CrawlerService_ServiceDesc, srv)
 }
 
-func _EnqueuerService_CreateEnqueuer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(EnqueuerMessage)
+func _CrawlerService_CreateCrawler_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CrawlerMessage)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(EnqueuerServiceServer).CreateEnqueuer(ctx, in)
+		return srv.(CrawlerServiceServer).CreateCrawler(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/tickerscraper.v1.EnqueuerService/CreateEnqueuer",
+		FullMethod: "/tickerscraper.v1.CrawlerService/CreateCrawler",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnqueuerServiceServer).CreateEnqueuer(ctx, req.(*EnqueuerMessage))
+		return srv.(CrawlerServiceServer).CreateCrawler(ctx, req.(*CrawlerMessage))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _EnqueuerService_ListEnqueuer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _CrawlerService_ListCrawler_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SourceIdMessage)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(EnqueuerServiceServer).ListEnqueuer(ctx, in)
+		return srv.(CrawlerServiceServer).ListCrawler(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/tickerscraper.v1.EnqueuerService/ListEnqueuer",
+		FullMethod: "/tickerscraper.v1.CrawlerService/ListCrawler",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnqueuerServiceServer).ListEnqueuer(ctx, req.(*SourceIdMessage))
+		return srv.(CrawlerServiceServer).ListCrawler(ctx, req.(*SourceIdMessage))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _EnqueuerService_StartEnqueuer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _CrawlerService_StartCrawler_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SourceIdMessage)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(EnqueuerServiceServer).StartEnqueuer(ctx, in)
+		return srv.(CrawlerServiceServer).StartCrawler(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/tickerscraper.v1.EnqueuerService/StartEnqueuer",
+		FullMethod: "/tickerscraper.v1.CrawlerService/StartCrawler",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnqueuerServiceServer).StartEnqueuer(ctx, req.(*SourceIdMessage))
+		return srv.(CrawlerServiceServer).StartCrawler(ctx, req.(*SourceIdMessage))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _EnqueuerService_StopEnqueuer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _CrawlerService_StopCrawler_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SourceIdMessage)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(EnqueuerServiceServer).StopEnqueuer(ctx, in)
+		return srv.(CrawlerServiceServer).StopCrawler(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/tickerscraper.v1.EnqueuerService/StopEnqueuer",
+		FullMethod: "/tickerscraper.v1.CrawlerService/StopCrawler",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnqueuerServiceServer).StopEnqueuer(ctx, req.(*SourceIdMessage))
+		return srv.(CrawlerServiceServer).StopCrawler(ctx, req.(*SourceIdMessage))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// EnqueuerService_ServiceDesc is the grpc.ServiceDesc for EnqueuerService service.
+// CrawlerService_ServiceDesc is the grpc.ServiceDesc for CrawlerService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var EnqueuerService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "tickerscraper.v1.EnqueuerService",
-	HandlerType: (*EnqueuerServiceServer)(nil),
+var CrawlerService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "tickerscraper.v1.CrawlerService",
+	HandlerType: (*CrawlerServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "CreateEnqueuer",
-			Handler:    _EnqueuerService_CreateEnqueuer_Handler,
+			MethodName: "CreateCrawler",
+			Handler:    _CrawlerService_CreateCrawler_Handler,
 		},
 		{
-			MethodName: "ListEnqueuer",
-			Handler:    _EnqueuerService_ListEnqueuer_Handler,
+			MethodName: "ListCrawler",
+			Handler:    _CrawlerService_ListCrawler_Handler,
 		},
 		{
-			MethodName: "StartEnqueuer",
-			Handler:    _EnqueuerService_StartEnqueuer_Handler,
+			MethodName: "StartCrawler",
+			Handler:    _CrawlerService_StartCrawler_Handler,
 		},
 		{
-			MethodName: "StopEnqueuer",
-			Handler:    _EnqueuerService_StopEnqueuer_Handler,
+			MethodName: "StopCrawler",
+			Handler:    _CrawlerService_StopCrawler_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

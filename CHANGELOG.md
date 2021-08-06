@@ -1,3 +1,5 @@
+## v0.23.7
+- feat: renaming to crawler
 ## v0.23.6
 - feat: add SCRAPE action
 ## v0.23.5
