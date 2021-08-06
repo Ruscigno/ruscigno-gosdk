@@ -1,4 +1,6 @@
-## v0.23.4
+## v0.23.6
+- feat: add SCRAPE action
+## v0.23.5
 - feat: action enum
 ## v0.23.3
 - fix: field type
