@@ -1,3 +1,5 @@
+## v0.24.0
+- feat: Testing Statistics Service
 ## v0.23.8
 - feat: allowed_domain, disallowed_domain
 ## v0.23.7
