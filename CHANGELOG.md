@@ -1,3 +1,5 @@
+## v0.24.1
+- feat: adding more fields
 ## v0.24.0
 - feat: Testing Statistics Service
 ## v0.23.8
