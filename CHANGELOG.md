@@ -1,3 +1,5 @@
+## v0.24.2
+- feat: TestingStatisticsVariables
 ## v0.24.1
 - feat: adding more fields
 ## v0.24.0
