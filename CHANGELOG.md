@@ -1,3 +1,5 @@
+## v0.24.3
+- feat: feat: TradeTransaction add internal_id
 ## v0.24.2
 - feat: TestingStatisticsVariables
 ## v0.24.1
