@@ -17,6 +17,25 @@ import (
 	"sync"
 )
 
+//NewConcurrentQueue Creates a new queue
+func NewConcurrentQueue(maxSize uint32) IConcurrentQueue {
+	queue := ConcurrentQueue{}
+
+	//init mutexes
+	queue.lock = &sync.Mutex{}
+	queue.notFull = sync.NewCond(queue.lock)
+	queue.notEmpty = sync.NewCond(queue.lock)
+
+	//init backend
+	queue.backend = &QueueBackend{}
+	queue.backend.size = 0
+	queue.backend.head = nil
+	queue.backend.tail = nil
+
+	queue.backend.maxSize = maxSize
+	return &queue
+}
+
 func (c *ConcurrentQueue) Enqueue(data interface{}) error {
 	c.lock.Lock()
 
@@ -59,23 +78,4 @@ func (c *ConcurrentQueue) GetSize() uint32 {
 	c.lock.Unlock()
 
 	return size
-}
-
-//NewConcurrentQueue Creates a new queue
-func NewConcurrentQueue(maxSize uint32) *ConcurrentQueue {
-	queue := ConcurrentQueue{}
-
-	//init mutexes
-	queue.lock = &sync.Mutex{}
-	queue.notFull = sync.NewCond(queue.lock)
-	queue.notEmpty = sync.NewCond(queue.lock)
-
-	//init backend
-	queue.backend = &QueueBackend{}
-	queue.backend.size = 0
-	queue.backend.head = nil
-	queue.backend.tail = nil
-
-	queue.backend.maxSize = maxSize
-	return &queue
 }

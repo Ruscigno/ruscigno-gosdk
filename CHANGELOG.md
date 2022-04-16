@@ -1,3 +1,5 @@
+## v0.24.5
+- feat: queue interface
 ## v0.24.4
 - feat: Return all Stop Loss or Take Profit changes
 ## v0.24.3
