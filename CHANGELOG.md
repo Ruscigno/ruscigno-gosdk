@@ -1,3 +1,6 @@
+## v0.25
+- feat: add group_id to beats
+- update protbuf version
 ## v0.24.5
 - feat: queue interface
 ## v0.24.4
