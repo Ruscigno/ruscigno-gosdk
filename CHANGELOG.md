@@ -1,3 +1,6 @@
+## v0.25.1
+- feat: add group_id and retcode to trade confirmation
+
 ## v0.25
 - feat: add group_id to beats
 - update protbuf version
