@@ -1,3 +1,5 @@
+## v0.26.0
+- feat: add deals to tickerbeats response
 ## v0.25.1
 - feat: add group_id and retcode to trade confirmation
 
