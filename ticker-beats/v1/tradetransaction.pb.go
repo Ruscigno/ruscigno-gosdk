@@ -423,7 +423,7 @@ type TradeRequest struct {
 	StopLimit      float64             `protobuf:"fixed64,9,opt,name=stop_limit,json=stopLimit,proto3" json:"stop_limit,omitempty"`                                            // Stop Limit level of the order
 	StopLoss       float64             `protobuf:"fixed64,10,opt,name=stop_loss,json=stopLoss,proto3" json:"stop_loss,omitempty"`                                              // Stop Loss level of the order
 	TakeProfit     float64             `protobuf:"fixed64,11,opt,name=take_profit,json=takeProfit,proto3" json:"take_profit,omitempty"`                                        // Take Profit level of the order
-	Deviation      int64               `protobuf:"varint,12,opt,name=deviation,proto3" json:"deviation,omitempty"`                                                             // Maximal possible deviation from the requested price
+	Deviation      int64               `protobuf:"varint,12,opt,name=deviation,proto3" json:"deviation,omitempty"`                                                             // The maximal price deviation, specified in points
 	OrderType      OrderType           `protobuf:"varint,13,opt,name=order_type,json=orderType,proto3,enum=tickerbeats.v1.OrderType" json:"order_type,omitempty"`              // Order type
 	TypeFilling    OrderFillingType    `protobuf:"varint,14,opt,name=type_filling,json=typeFilling,proto3,enum=tickerbeats.v1.OrderFillingType" json:"type_filling,omitempty"` // Order execution type
 	TypeTime       OrderTypeTime       `protobuf:"varint,15,opt,name=type_time,json=typeTime,proto3,enum=tickerbeats.v1.OrderTypeTime" json:"type_time,omitempty"`             // Order expiration type

@@ -1,3 +1,6 @@
+## v0.27.0
+feat: MaxSpread to Deviation
+
 ## v0.26.0
 - feat: add deals to tickerbeats response
 ## v0.25.1
