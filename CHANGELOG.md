@@ -1,3 +1,6 @@
+## v0.27.1
+feat: simple beats response
+
 ## v0.27.0
 feat: MaxSpread to Deviation
 
