@@ -1,3 +1,6 @@
+## v0.28.0
+feat: AllItems tells if it contains all records
+
 ## v0.27.1
 feat: simple beats response
 
