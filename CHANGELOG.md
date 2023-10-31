@@ -1,3 +1,6 @@
+## v0.30
+adding providerid, internalid fields to orders
+
 ## v0.28.0
 feat: AllItems tells if it contains all records
 
