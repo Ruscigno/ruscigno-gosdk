@@ -1,3 +1,6 @@
+## v0.30.2
+fixing naming
+
 ## v0.30.1
 tag versioning must have the following format: `vX.Y.Z` where `X` is the major version, `Y` is the minor version and `Z` is the patch version.
 
