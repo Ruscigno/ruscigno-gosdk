@@ -1,3 +1,6 @@
+## v0.30.1
+tag versioning must have the following format: `vX.Y.Z` where `X` is the major version, `Y` is the minor version and `Z` is the patch version.
+
 ## v0.30
 adding providerid, internalid fields to orders
 
