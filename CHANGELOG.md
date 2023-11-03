@@ -1,3 +1,6 @@
+## v0.30.3
+rename field from AccountType to TestingType
+
 ## v0.30.2
 fixing naming
 
