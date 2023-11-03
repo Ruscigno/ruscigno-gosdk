@@ -1,3 +1,6 @@
+## v0.30.4
+adding account mode: internal and binance
+
 ## v0.30.3
 rename field from AccountType to TestingType
 
