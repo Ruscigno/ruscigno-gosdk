@@ -1,3 +1,6 @@
+## v0.30.5
+add TradeRequestType enum
+
 ## v0.30.4
 adding account mode: internal and binance
 
