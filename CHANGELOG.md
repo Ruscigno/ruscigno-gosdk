@@ -1,3 +1,6 @@
+## v0.30.6
+add Origin to TradeRequestType enum
+
 ## v0.30.5
 add TradeRequestType enum
 
