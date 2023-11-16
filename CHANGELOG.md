@@ -1,3 +1,6 @@
+## v0.30.8
+adding fields to TradeRequest
+
 ## v0.30.7
 rename to CopyTradeAction
 
