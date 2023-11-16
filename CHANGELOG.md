@@ -1,3 +1,6 @@
+## v0.30.7
+rename to CopyTradeAction
+
 ## v0.30.6
 add Origin to TradeRequestType enum
 
