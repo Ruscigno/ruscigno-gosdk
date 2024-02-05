@@ -20,8 +20,9 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	TickerBeatsService_GetTickerBeats_FullMethodName          = "/tickerbeats.v1.TickerBeatsService/GetTickerBeats"
-	TickerBeatsService_ConfirmBeatsTransaction_FullMethodName = "/tickerbeats.v1.TickerBeatsService/ConfirmBeatsTransaction"
+	TickerBeatsService_GetTickerBeats_FullMethodName             = "/tickerbeats.v1.TickerBeatsService/GetTickerBeats"
+	TickerBeatsService_GetTickerBeatsNotification_FullMethodName = "/tickerbeats.v1.TickerBeatsService/GetTickerBeatsNotification"
+	TickerBeatsService_ConfirmBeatsTransaction_FullMethodName    = "/tickerbeats.v1.TickerBeatsService/ConfirmBeatsTransaction"
 )
 
 // TickerBeatsServiceClient is the client API for TickerBeatsService service.
@@ -29,6 +30,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TickerBeatsServiceClient interface {
 	GetTickerBeats(ctx context.Context, in *TickerBeatsRequest, opts ...grpc.CallOption) (*TickerBeatsResponse, error)
+	GetTickerBeatsNotification(ctx context.Context, in *TickerBeatsRequest, opts ...grpc.CallOption) (*TickerBeatsResponse, error)
 	ConfirmBeatsTransaction(ctx context.Context, in *TickerBeatsConfirmationRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
@@ -49,6 +51,15 @@ func (c *tickerBeatsServiceClient) GetTickerBeats(ctx context.Context, in *Ticke
 	return out, nil
 }
 
+func (c *tickerBeatsServiceClient) GetTickerBeatsNotification(ctx context.Context, in *TickerBeatsRequest, opts ...grpc.CallOption) (*TickerBeatsResponse, error) {
+	out := new(TickerBeatsResponse)
+	err := c.cc.Invoke(ctx, TickerBeatsService_GetTickerBeatsNotification_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *tickerBeatsServiceClient) ConfirmBeatsTransaction(ctx context.Context, in *TickerBeatsConfirmationRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, TickerBeatsService_ConfirmBeatsTransaction_FullMethodName, in, out, opts...)
@@ -63,6 +74,7 @@ func (c *tickerBeatsServiceClient) ConfirmBeatsTransaction(ctx context.Context, 
 // for forward compatibility
 type TickerBeatsServiceServer interface {
 	GetTickerBeats(context.Context, *TickerBeatsRequest) (*TickerBeatsResponse, error)
+	GetTickerBeatsNotification(context.Context, *TickerBeatsRequest) (*TickerBeatsResponse, error)
 	ConfirmBeatsTransaction(context.Context, *TickerBeatsConfirmationRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedTickerBeatsServiceServer()
 }
@@ -73,6 +85,9 @@ type UnimplementedTickerBeatsServiceServer struct {
 
 func (UnimplementedTickerBeatsServiceServer) GetTickerBeats(context.Context, *TickerBeatsRequest) (*TickerBeatsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTickerBeats not implemented")
+}
+func (UnimplementedTickerBeatsServiceServer) GetTickerBeatsNotification(context.Context, *TickerBeatsRequest) (*TickerBeatsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTickerBeatsNotification not implemented")
 }
 func (UnimplementedTickerBeatsServiceServer) ConfirmBeatsTransaction(context.Context, *TickerBeatsConfirmationRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ConfirmBeatsTransaction not implemented")
@@ -108,6 +123,24 @@ func _TickerBeatsService_GetTickerBeats_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TickerBeatsService_GetTickerBeatsNotification_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TickerBeatsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TickerBeatsServiceServer).GetTickerBeatsNotification(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TickerBeatsService_GetTickerBeatsNotification_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TickerBeatsServiceServer).GetTickerBeatsNotification(ctx, req.(*TickerBeatsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _TickerBeatsService_ConfirmBeatsTransaction_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(TickerBeatsConfirmationRequest)
 	if err := dec(in); err != nil {
@@ -136,6 +169,10 @@ var TickerBeatsService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetTickerBeats",
 			Handler:    _TickerBeatsService_GetTickerBeats_Handler,
+		},
+		{
+			MethodName: "GetTickerBeatsNotification",
+			Handler:    _TickerBeatsService_GetTickerBeatsNotification_Handler,
 		},
 		{
 			MethodName: "ConfirmBeatsTransaction",

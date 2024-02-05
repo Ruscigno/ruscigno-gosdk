@@ -1,3 +1,6 @@
+## v0.31.1
+feat: add GetTickerBeatsNotification method
+
 ## v0.31.0
 feat: add NotificationAccount to the model
 
