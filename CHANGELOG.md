@@ -1,3 +1,6 @@
+## v0.31.2
+feat: add Active field to the model
+
 ## v0.31.1
 feat: add GetTickerBeatsNotification method
 
